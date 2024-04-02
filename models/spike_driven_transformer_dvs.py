@@ -221,10 +221,10 @@ class SPS(BaseModule):
 
 class Spikformer(BaseModule):
     def __init__(self, step=10, encode_type='direct',
-                 img_size_h=224, img_size_w=224, patch_size=16, in_channels=3, num_classes=1000,
-                 embed_dims=512, num_heads=12, mlp_ratios=4, qkv_bias=False, qk_scale=None,
+                 img_size_h=64, img_size_w=64, patch_size=4, in_channels=2, num_classes=10,
+                 embed_dims=256, num_heads=16, mlp_ratios=4, qkv_bias=False, qk_scale=None,
                  drop_rate=0., attn_drop_rate=0., drop_path_rate=0., norm_layer=nn.LayerNorm,
-                 depths=8, sr_ratios=4,
+                 depths=2, sr_ratios=4,
                  ):
         super().__init__(step=10, encode_type='direct')
         self.step = step  # time step
@@ -291,7 +291,7 @@ class Spikformer(BaseModule):
 
     def forward(self, x):
         self.reset()
-        x = self.encoder(x)  
+        x = x.permute(1, 0, 2, 3, 4)  # [T, N, 2, *, *]
         x = self.forward_features(x)
         x = self.head(x.mean(0))
         return x
@@ -300,12 +300,12 @@ class Spikformer(BaseModule):
 
 # Adjust ur hyperparams here
 @register_model
-def sd_transformer(pretrained=False, **kwargs):
-    model = Spikformer(step = 4,
-        img_size_h=224, img_size_w=224,
-        patch_size=16, embed_dims=512, num_heads=16, mlp_ratios=4,
-        in_channels=3, num_classes=1000, qkv_bias=False,
-        depths=8, sr_ratios=1,
+def sd_transformer_dvs(pretrained=False, **kwargs):
+    model = Spikformer(step = 8,
+        img_size_h=64, img_size_w=64,
+        patch_size=4, embed_dims=256, num_heads=16, mlp_ratios=4,
+        in_channels=2, num_classes=10, qkv_bias=False,
+        depths=2, sr_ratios=1,
         **kwargs
     )
     model.default_cfg = _cfg()
