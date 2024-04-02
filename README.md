@@ -26,4 +26,16 @@ Here is the current Spiking Transformer code reproduced using [BrainCog](http://
 [Zhang, H., Zhou, C., Yu, L., Huang, L., Ma, Z., Fan, X., ... & Tian, Y. (2024). SGLFormer: Spiking Global-Local-Fusion Transformer with High Performance. Frontiers in Neuroscience, 18, 1371290.](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2024.1371290/full)
 
 **QKFormer(CVPR2024)**
-[Zhou, C., Zhang, H., Zhou, Z., Yu, L., Huang, L., Fan, X., ... & Tian, Y. (2024). QKFormer: Hierarchical Spiking Transformer using QK Attention. arXiv preprint arXiv:2403.16552.]()
+[Zhou, C., Zhang, H., Zhou, Z., Yu, L., Huang, L., Fan, X., ... & Tian, Y. (2024). QKFormer: Hierarchical Spiking Transformer using QK Attention. arXiv preprint arXiv:2403.16552.](https://arxiv.org/abs/2403.16552)
+
+
+## Requirments
+- Braincog
+- einops >= 0.4.1
+- timm >= 0.5.4
+
+## Training Examples
+### Training on CIFAR10-DVS
+python main.py --dataset dvsc10 --epochs 500 --batch-size 16 --seed 42 --event-size 64 --model spikformer_dvs
+### Training on ImageNet
+python main.py --dataset imnet --epochs 500 --batch-size 16 --seed 42 --model spikformer
