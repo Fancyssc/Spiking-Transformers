@@ -25,7 +25,7 @@ Here is the current Spiking Transformer code reproduced using [BrainCog](http://
 </div>
 
 **TIM(IJCAI 2024)**
-[paper link](https://arxiv.org/abs/2401.11687)
+[paper link](https://www.ijcai.org/proceedings/2024/0347.pdf)
 
 The code of **_TIM: An Efficient Temporal Interaction Module for Spiking Transformer_** is originally written by [Braincog](http://www.brain-cog.network/). The official code of TIM can be downloaded in [code link](https://github.com/BrainCog-X/Brain-Cog/tree/main/examples/TIM).
 <div style="text-align: center;">

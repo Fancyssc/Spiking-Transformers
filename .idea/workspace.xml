@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Spiking-Transformers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Spiking-Transformers.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Code of TIM added, Readme updated." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +13,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Fancyssc/Spiking-Transformers.git",
+    "accountId": "ff9647b4-1f5b-4676-b850-c69718d6c317"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -60,11 +61,43 @@
       <option name="presentableId" value="Default" />
       <updated>1712036208255</updated>
       <workItem from="1712036209460" duration="5000" />
-      <workItem from="1727366399374" duration="1242000" />
+      <workItem from="1727366399374" duration="1567000" />
     </task>
+    <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
+      <option name="closed" value="true" />
+      <created>1727367880268</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727367880268</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Code of TIM added, Readme updated.">
+      <option name="closed" value="true" />
+      <created>1727367919485</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727367919485</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Code of TIM added, Readme updated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Code of TIM added, Readme updated." />
   </component>
 </project>
