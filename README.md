@@ -3,24 +3,38 @@ Here is the current Spiking Transformer code reproduced using [BrainCog](http://
 
 ### Models
 **Spikformer(ICLR 2023)**
-[Zhou, Z., Zhu, Y., He, C., Wang, Y., Yan, S., Tian, Y., & Yuan, L. (2022). Spikformer: When spiking neural network meets transformer. arXiv preprint arXiv:2209.15425.](https://openreview.net/forum?id=frE4fUwz_h)
-![alt text](/img/spikformer.png)
+[paper link](https://openreview.net/forum?id=frE4fUwz_h) 
+
+<div style="text-align: center;">
+    <img src="/img/spikformer.png"  style="width: 60%;">
+</div>
 
 **Spike-driven Transformer(Nips 2023)**
-[Yao, M., Hu, J., Zhou, Z., Yuan, L., Tian, Y., Xu, B., & Li, G. (2024). Spike-driven transformer. Advances in Neural Information Processing Systems, 36.](https://proceedings.neurips.cc/paper_files/paper/2023/hash/ca0f5358dbadda74b3049711887e9ead-Abstract-Conference.html)
-![alt text](/img/sdv1.png)
+[paper link](https://proceedings.neurips.cc/paper_files/paper/2023/hash/ca0f5358dbadda74b3049711887e9ead-Abstract-Conference.html)
+
+<div style="text-align: center;">
+    <img src="/img/sdv1.png"  style="width: 60%;">
+</div>
 
 
 **Spike-driven Transformer V2(ICLR 2024)**
-[Yao, M., Hu, J., Hu, T., Xu, Y., Zhou, Z., Tian, Y., ... & Li, G. (2023, October). Spike-driven Transformer V2: Meta Spiking Neural Network Architecture Inspiring the Design of Next-generation Neuromorphic Chips. In The Twelfth International Conference on Learning Representations.](https://openreview.net/forum?id=1SIBN5Xyw7)
-![alt text](/img/sdv2.png)
+[paper link](https://openreview.net/forum?id=1SIBN5Xyw7)
+
+<div style="text-align: center;">
+    <img src="/img/sdv2.png"  style="width: 60%;">
+</div>
+
+**TIM(IJCAI 2024)**
+[paper link](https://arxiv.org/abs/2401.11687)
+
+The code of **_TIM: An Efficient Temporal Interaction Module for Spiking Transformer_** is originally written by [Braincog](http://www.brain-cog.network/). The official code of TIM can be downloaded in [code link](https://github.com/BrainCog-X/Brain-Cog/tree/main/examples/TIM).
+<div style="text-align: center;">
+    <img src="/img/TIM.png"  style="width: 60%;">
+</div>
 
 ## Models in comming soon
 **SpikingResFormer**
 [Shi, X., Hao, Z., & Yu, Z. (2024). SpikingResformer: Bridging ResNet and Vision Transformer in Spiking Neural Networks. arXiv preprint arXiv:2403.14302.](https://arxiv.org/abs/2403.14302)
-
-**TIM**
-[Shen, S., Zhao, D., Shen, G., & Zeng, Y. (2024). TIM: An Efficient Temporal Interaction Module for Spiking Transformer. arXiv preprint arXiv:2401.11687.](https://arxiv.org/abs/2401.11687)
 
 **SGLFormer(Frontiers in Neuroscience)**
 [Zhang, H., Zhou, C., Yu, L., Huang, L., Ma, Z., Fan, X., ... & Tian, Y. (2024). SGLFormer: Spiking Global-Local-Fusion Transformer with High Performance. Frontiers in Neuroscience, 18, 1371290.](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2024.1371290/full)
