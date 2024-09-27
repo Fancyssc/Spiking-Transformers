@@ -1,4 +1,4 @@
-# Spiking Transformers Reproduced With Braincog
+# Spiking Transformers Reproduced With [BrainCog](http://www.brain-cog.network/)
 Here is the current Spiking Transformer code reproduced using [BrainCog](http://www.brain-cog.network/). Welcome to follow the work of BrainCog and utilize the [BrainCog framework](https://github.com/BrainCog-X/Brain-Cog) to create relevant brain-inspired AI endeavors. The works implemented here will also be merged into BrainCog Repo.
 
 ### Models
@@ -48,12 +48,20 @@ The code of **_TIM: An Efficient Temporal Interaction Module for Spiking Transfo
 **More models will be updated soon......**
 
 ## Requirments
+
+The version of timm should be 0.5.4 exactly 0.5.4, unless the code will not work properly.
+Other packages may possilbly be need for different models, please install them according to the error message.
+
+```angular2html
 - Braincog
 - einops >= 0.4.1
 - timm >= 0.5.4
 
+```
+
 ## Training Examples
 Please notice that part of models may not support all the datasets mentioned below. 
+
 
 
 ### Training on CIFAR10-DVS
