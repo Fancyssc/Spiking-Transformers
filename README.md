@@ -32,12 +32,14 @@ The code of **_TIM: An Efficient Temporal Interaction Module for Spiking Transfo
     <img src="/img/TIM.png"  style="width: 60%;">
 </div>
 
-## Models in comming soon
-**SpikingResFormer**
-[Shi, X., Hao, Z., & Yu, Z. (2024). SpikingResformer: Bridging ResNet and Vision Transformer in Spiking Neural Networks. arXiv preprint arXiv:2403.14302.](https://arxiv.org/abs/2403.14302)
+**SpikingResFormer(CVPR 2024)**
+[paper link](https://arxiv.org/abs/2403.14302)
+<div style="text-align: center;">
+    <img src="/img/spikingresformer.png"  style="width: 60%;">
+</div>
 
-**SGLFormer(Frontiers in Neuroscience)**
-[Zhang, H., Zhou, C., Yu, L., Huang, L., Ma, Z., Fan, X., ... & Tian, Y. (2024). SGLFormer: Spiking Global-Local-Fusion Transformer with High Performance. Frontiers in Neuroscience, 18, 1371290.](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2024.1371290/full)
+## Models in comming soon
+
 
 **QKFormer(CVPR2024)**
 [Zhou, C., Zhang, H., Zhou, Z., Yu, L., Huang, L., Fan, X., ... & Tian, Y. (2024). QKFormer: Hierarchical Spiking Transformer using QK Attention. arXiv preprint arXiv:2403.16552.](https://arxiv.org/abs/2403.16552)
@@ -49,7 +51,19 @@ The code of **_TIM: An Efficient Temporal Interaction Module for Spiking Transfo
 - timm >= 0.5.4
 
 ## Training Examples
+Please notice that part of models may not support all the datasets mentioned below. 
+
+
 ### Training on CIFAR10-DVS
+
+```angular2html
 python main.py --dataset dvsc10 --epochs 500 --batch-size 16 --seed 42 --event-size 64 --model spikformer_dvs
+```
+
 ### Training on ImageNet
+```angular2html
 python main.py --dataset imnet --epochs 500 --batch-size 16 --seed 42 --model spikformer
+```
+
+
+

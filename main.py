@@ -48,7 +48,7 @@ from models.spike_driven_transformer_v2 import sd_transformer_v2
 from models.spike_driven_transformer_v2_dvs import sd_transformer_v2_dvs
 
 # choose ur device here
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 torch.backends.cudnn.benchmark = True
