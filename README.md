@@ -49,7 +49,16 @@ The code of **_TIM: An Efficient Temporal Interaction Module for Spiking Transfo
 - timm >= 0.5.4
 
 ## Training Examples
+Please notice that part of models may not support all the datasets mentioned below. 
+
+
 ### Training on CIFAR10-DVS
+
+```angular2html
 python main.py --dataset dvsc10 --epochs 500 --batch-size 16 --seed 42 --event-size 64 --model spikformer_dvs
+```
+
 ### Training on ImageNet
+```angular2html
 python main.py --dataset imnet --epochs 500 --batch-size 16 --seed 42 --model spikformer
+```
