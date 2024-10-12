@@ -2,17 +2,17 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="172.18.116.131">
+      <paths name="172.16.18.131">
         <serverdata>
           <mappings>
-            <mapping deploy="/code" local="$PROJECT_DIR$/.." web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
       <paths name="210.75.240.12">
         <serverdata>
           <mappings>
-            <mapping deploy="/code" local="$PROJECT_DIR$/../" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

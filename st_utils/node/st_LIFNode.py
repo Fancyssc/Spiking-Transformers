@@ -60,7 +60,7 @@ class lbl_BaseNode(BaseNode):
         return outputs
 
 # Default： Layer by layer LIFNode with Sigmoid Grad
-class lbl_LIFNode(lbl_BaseNode):
+class st_LIFNode(lbl_BaseNode):
     def __init__(self, threshold=1., step=4, layer_by_layer=True, tau=2., act_fun=Sigmoid_Grad,mem_detach=True, *args,
                  **kwargs):
         super().__init__(threshold=threshold, step=step, layer_by_layer=layer_by_layer, mem_detach=mem_detach)
