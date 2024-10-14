@@ -40,12 +40,7 @@ from timm.utils import ApexScaler, NativeScaler
 from torch.utils.tensorboard import SummaryWriter
 
 # load spiking transformer models
-from models.spikformer import spikformer
-from models.spikformer_dvs import spikformer_dvs
-from models.spike_driven_transformer import sd_transformer
-from models.spike_driven_transformer_dvs import sd_transformer_dvs
-from models.spike_driven_transformer_v2 import sd_transformer_v2
-from models.spike_driven_transformer_v2_dvs import sd_transformer_v2_dvs
+from spiking_transformers import *
 
 # choose ur device here
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"

@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="more utils">
+      <change afterPath="$PROJECT_DIR$/st_utils/layers/st_heads.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/st_utils/widgets/spikformer_block.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LIFNode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer_dvs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer_v2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer_v2_dvs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spikeresformer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spikformer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spikformer_dvs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_attn.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layers/st_attn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_mlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layers/st_mlp.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,12 +43,12 @@
     &quot;assignee&quot;: &quot;Fancyssc&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Fancyssc/Spiking-Transformers.git",
-    "accountId": "61729cf9-2d5e-47dc-a079-bc45d518599e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,
+    &quot;accountId&quot;: &quot;61729cf9-2d5e-47dc-a079-bc45d518599e&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -46,6 +62,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.spikformer_dvs.executor": "Profiler",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -66,11 +83,41 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="spikformer_dvs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Spiking-Transformers" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/spikformer_dvs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.spikformer_dvs" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
-        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.22855.92" />
+        <option value="bundled-python-sdk-b068d85d1acf-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.22855.92" />
       </set>
     </attachedChunks>
   </component>
@@ -99,6 +146,8 @@
       <workItem from="1727415249330" duration="200000" />
       <workItem from="1728451773263" duration="507000" />
       <workItem from="1728483861774" duration="3387000" />
+      <workItem from="1728786987060" duration="6724000" />
+      <workItem from="1728887387343" duration="5629000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -308,7 +357,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728487296192</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/deployment.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;st_utils/layers/st_embed.py&#10;#&#9;st_utils/node/st_LIFNode.py">
+      <option name="closed" value="true" />
+      <created>1728713756145</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1728713756145</updated>
+    </task>
+    <task id="LOCAL-00028" summary="more utils">
+      <option name="closed" value="true" />
+      <created>1728723922017</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1728723922017</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,6 +406,9 @@
     <MESSAGE value="Code of TIM added, Readme updated." />
     <MESSAGE value="Model Updated" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/deployment.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;st_utils/layers/st_embed.py&#10;#&#9;st_utils/node/st_LIFNode.py" />
+    <MESSAGE value="more utils" />
+    <option name="LAST_COMMIT_MESSAGE" value="more utils" />
+    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
