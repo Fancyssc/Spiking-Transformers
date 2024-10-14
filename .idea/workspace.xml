@@ -30,12 +30,12 @@
     &quot;assignee&quot;: &quot;Fancyssc&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Fancyssc/Spiking-Transformers.git",
-    "accountId": "75359dc7-7eb5-4876-9aec-5eac40769cf9"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,
+    &quot;accountId&quot;: &quot;75359dc7-7eb5-4876-9aec-5eac40769cf9&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
