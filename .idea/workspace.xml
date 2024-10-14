@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="re-configure all widgets and code structure for spiking transformers">
-      <change afterPath="$PROJECT_DIR$/st_utils/layer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/st_utils/node.py" afterDir="false" />
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Re-config code structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/grad/st_grad.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_attn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_embed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_heads.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_mlp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/node/st_LIFNode.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/widgets/spikformer_block.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +20,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
@@ -39,12 +30,12 @@
     &quot;assignee&quot;: &quot;Fancyssc&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,
-    &quot;accountId&quot;: &quot;61729cf9-2d5e-47dc-a079-bc45d518599e&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Fancyssc/Spiking-Transformers.git",
+    "accountId": "75359dc7-7eb5-4876-9aec-5eac40769cf9"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -144,7 +135,7 @@
       <workItem from="1728483861774" duration="3387000" />
       <workItem from="1728786987060" duration="6724000" />
       <workItem from="1728887387343" duration="8022000" />
-      <workItem from="1728906428694" duration="5393000" />
+      <workItem from="1728906428694" duration="6236000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -378,7 +369,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728893074045</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Re-config code structure">
+      <option name="closed" value="true" />
+      <created>1728913757990</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1728913757990</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Re-config code structure">
+      <option name="closed" value="true" />
+      <created>1728913777137</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1728913777137</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,7 +421,8 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/deployment.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;st_utils/layers/st_embed.py&#10;#&#9;st_utils/node/st_LIFNode.py" />
     <MESSAGE value="more utils" />
     <MESSAGE value="re-configure all widgets and code structure for spiking transformers" />
-    <option name="LAST_COMMIT_MESSAGE" value="re-configure all widgets and code structure for spiking transformers" />
+    <MESSAGE value="Re-config code structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-config code structure" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
