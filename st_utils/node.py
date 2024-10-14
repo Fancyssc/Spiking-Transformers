@@ -1,11 +1,37 @@
 from braincog.base.node.node import *
 from braincog.base.connection.layer import *
-from st_utils.grad.st_grad import *
+from braincog.base.strategy.surrogate import *
 
 
-# Spiking Transformers prefer layer-by-layer processing
+
+class Sigmoid_Grad(SurrogateFunctionBase):
+    """
+    Sigmoid activation function with gradient
+    Overwrite sigmoid function in BrainCog
+    """
+    def __init__(self, alpha=4., requires_grad=False):
+        super().__init__(alpha, requires_grad)
+
+    @staticmethod
+    def act_fun(x, alpha):
+        return sigmoid.apply(x, alpha)
+
+
+class QGate_Grad(SurrogateFunctionBase):
+    def __init__(self, alpha=2., requires_grad=False):
+        super().__init__(alpha, requires_grad)
+
+    @staticmethod
+    def act_fun(x, alpha):
+        return quadratic_gate.apply(x, alpha)
 
 class lbl_BaseNode(BaseNode):
+    """
+    Base Node for Layer by Layer forward propagation
+    New OP added to adapt specific dim needed by Spiking Transformers
+    :param threshold: The threshold that a neuron needs to reach in order to fire an action potential.
+    :param step: The number of time steps that the neuron will be simulated for.
+    """
     def __init__(self, threshold=0.5, step=10, layer_by_layer=True, mem_detach=True):
         super().__init__(threshold=threshold, step=step, layer_by_layer=layer_by_layer, mem_detach=mem_detach)
 
@@ -59,8 +85,14 @@ class lbl_BaseNode(BaseNode):
 
         return outputs
 
-# Default： Layer by layer LIFNode with Sigmoid Grad
 class st_LIFNode(lbl_BaseNode):
+    """
+    Leaky Integrate-and-Fire (LIF) neuron model
+    :param threshold: The threshold that a neuron needs to reach in order to fire an action potential.
+    :param step: The number of time steps that the neuron will be simulated for.
+    :param tau: The time constant of the neuron.
+    :param act_fun: The activation function of the neuron.
+    """
     def __init__(self, threshold=1., step=4, layer_by_layer=True, tau=2., act_fun=Sigmoid_Grad,mem_detach=True, *args,
                  **kwargs):
         super().__init__(threshold=threshold, step=step, layer_by_layer=layer_by_layer, mem_detach=mem_detach)

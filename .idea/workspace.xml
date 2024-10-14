@@ -4,22 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="more utils">
-      <change afterPath="$PROJECT_DIR$/st_utils/layers/st_heads.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/st_utils/widgets/spikformer_block.py" afterDir="false" />
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Re-config code structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LIFNode.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer_dvs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer_v2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spike_driven_transformer_v2_dvs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spikeresformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spikformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spikformer_dvs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_attn.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layers/st_attn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/layers/st_mlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layers/st_mlp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +20,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
@@ -46,7 +33,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,
-    &quot;accountId&quot;: &quot;61729cf9-2d5e-47dc-a079-bc45d518599e&quot;
+    &quot;accountId&quot;: &quot;75359dc7-7eb5-4876-9aec-5eac40769cf9&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -60,29 +47,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.spikformer_dvs.executor": "Profiler",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
-    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
-    "WebServerToolWindowPanel.toolwindow.show.date": "false",
-    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
-    "WebServerToolWindowPanel.toolwindow.show.size": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/projects/PythonProjects",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.spikformer_dvs.executor&quot;: &quot;Profiler&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/projects/PythonProjects&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="spikformer_dvs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Spiking-Transformers" />
@@ -147,7 +134,8 @@
       <workItem from="1728451773263" duration="507000" />
       <workItem from="1728483861774" duration="3387000" />
       <workItem from="1728786987060" duration="6724000" />
-      <workItem from="1728887387343" duration="5629000" />
+      <workItem from="1728887387343" duration="8022000" />
+      <workItem from="1728906428694" duration="6236000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -373,7 +361,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728723922017</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="re-configure all widgets and code structure for spiking transformers">
+      <option name="closed" value="true" />
+      <created>1728893074045</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1728893074045</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Re-config code structure">
+      <option name="closed" value="true" />
+      <created>1728913757990</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1728913757990</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Re-config code structure">
+      <option name="closed" value="true" />
+      <created>1728913777137</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1728913777137</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +420,9 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/deployment.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;st_utils/layers/st_embed.py&#10;#&#9;st_utils/node/st_LIFNode.py" />
     <MESSAGE value="more utils" />
-    <option name="LAST_COMMIT_MESSAGE" value="more utils" />
+    <MESSAGE value="re-configure all widgets and code structure for spiking transformers" />
+    <MESSAGE value="Re-config code structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-config code structure" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
