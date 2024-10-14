@@ -1,6 +1,5 @@
 from timm.models.layers import trunc_normal_
 from braincog.base.strategy.surrogate import *
-from models.spikformer import spikformer
 from st_utils.layers.st_mlp import *
 from st_utils.layers.st_embed import *
 from st_utils.layers.st_attn import *
