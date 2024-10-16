@@ -93,7 +93,7 @@ class st_LIFNode(lbl_BaseNode):
     :param tau: The time constant of the neuron.
     :param act_fun: The activation function of the neuron.
     """
-    def __init__(self, threshold=1., step=4, layer_by_layer=True, tau=2., act_fun=Sigmoid_Grad,mem_detach=True, *args,
+    def __init__(self, threshold=1., step=10, layer_by_layer=True, tau=2., act_fun=Sigmoid_Grad,mem_detach=True, *args,
                  **kwargs):
         super().__init__(threshold=threshold, step=step, layer_by_layer=layer_by_layer, mem_detach=mem_detach)
         self.tau = tau
@@ -107,3 +107,6 @@ class st_LIFNode(lbl_BaseNode):
     def calc_spike(self):
         self.spike = self.act_fun(self.mem - self.threshold)
         self.mem = self.mem * (1 - self.spike.detach())
+
+
+# Create your self defined node below by following code structure in Braicog

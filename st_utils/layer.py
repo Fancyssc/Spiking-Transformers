@@ -19,7 +19,7 @@ class SPS(BaseModule):
     :param: embed_dims: The dimension of the embedding.
     """
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
-                 embed_dims=256,node=st_LIFNode):
+                 embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=step, encode_type=encode_type)
         self.img_h = img_h
         self.img_w = img_w
@@ -30,23 +30,24 @@ class SPS(BaseModule):
 
         self.proj_conv = nn.Conv2d(in_channels, embed_dims // 8, kernel_size=3, stride=1, padding=1, bias=False)
         self.proj_bn = nn.BatchNorm2d(embed_dims // 8)
-        self.proj_lif = node(step=step)
+        self.proj_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.proj_conv1 = nn.Conv2d(embed_dims // 8, embed_dims // 4, kernel_size=3, stride=1, padding=1, bias=False)
         self.proj_bn1 = nn.BatchNorm2d(embed_dims // 4)
-        self.proj_lif1 = node(step=step)
+        self.proj_lif1 = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.proj_conv2 = nn.Conv2d(embed_dims // 4, embed_dims // 2, kernel_size=3, stride=1, padding=1, bias=False)
         self.proj_bn2 = nn.BatchNorm2d(embed_dims // 2)
-        self.proj_lif2 = node(step=step)
+        self.proj_lif2 = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.proj_conv3 = nn.Conv2d(embed_dims // 2, embed_dims, kernel_size=3, stride=1, padding=1, bias=False)
         self.proj_bn3 = nn.BatchNorm2d(embed_dims)
-        self.proj_lif3 = node(step=step)
+        self.proj_lif3 = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.rpe_conv = nn.Conv2d(embed_dims, embed_dims, kernel_size=3, stride=1, padding=1, bias=False)
         self.rpe_bn = nn.BatchNorm2d(embed_dims)
-        self.rpe_node = node(step=step)
+        self.rpe_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
+
 
     #Conv - BN - LIF layer in SPS
     def ConvBnSn(self,x,conv,bn,lif):
@@ -63,7 +64,7 @@ class SPS(BaseModule):
 # Default: For dvs data with step equals to 10
 class SPSv1(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
-                 embed_dims=256,):
+                 embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=step, encode_type=encode_type)
         self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
@@ -99,7 +100,7 @@ class SPSv1(SPS):
 ## Since Spikformer v2 is not open-sourced yet, some params are evaluated by reproducers according to the paper
 class SPSv2(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
-                 embed_dims=256,scs_ratio = 2.0):
+                 embed_dims=256,scs_ratio=2.0,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=step, encode_type=encode_type)
         self.proj_conv = nn.Conv2d(in_channels, embed_dims // 8, kernel_size=2, stride=2, bias=False)
         self.proj_conv1 = nn.Conv2d(embed_dims // 8, embed_dims // 4, kernel_size=2, stride=2, bias=False)
@@ -148,7 +149,7 @@ class SPSv2(SPS):
 '''
 class SSA(BaseModule):
     #num_heads: 16 for dvsc10, 8 for dvsg
-    def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,scale=0.25,attn_drop=0,**kwargs):
+    def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,scale=0.25,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super(SSA, self).__init__(step=step,encode_type=encode_type)
         self.embed_dim = embed_dim
         self.num_heads = num_heads
@@ -157,23 +158,23 @@ class SSA(BaseModule):
 
         self.q_conv = nn.Conv1d(embed_dim, embed_dim, kernel_size=1, stride=1, bias=False)
         self.q_bn = nn.BatchNorm1d(embed_dim)
-        self.q_lif = st_LIFNode(step=step)
+        self.q_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.k_conv = nn.Conv1d(embed_dim,embed_dim, kernel_size=1, stride=1, bias=False)
         self.k_bn = nn.BatchNorm1d(embed_dim)
-        self.k_lif = st_LIFNode(step=step)
+        self.k_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.v_conv = nn.Conv1d(embed_dim, embed_dim, kernel_size=1, stride=1, bias=False)
         self.v_bn = nn.BatchNorm1d(embed_dim)
-        self.v_lif = st_LIFNode(step=step)
+        self.v_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
-        self.attn_drop = nn.Dropout(self.attn_drop)
-        self.res_lif = st_LIFNode(step=step)
-        self.attn_lif = st_LIFNode(step=step)
+        self.attn_drop = nn.Dropout(self.attn_drop_rate)
+        self.res_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
+        self.attn_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.proj_conv = nn.Conv1d(embed_dim, embed_dim, kernel_size=1, stride=1, bias=False)
         self.proj_bn = nn.BatchNorm1d(embed_dim)
-        self.proj_lif = st_LIFNode(step=step)
+        self.proj_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
     def qkv(self,x,conv,bn,lif):
         T, B, C, N = x.shape
@@ -208,14 +209,14 @@ class SSA(BaseModule):
 
 
 class TIM(BaseModule):
-    def __init__(self,embed_dim,num_heads, encode_type='direct', TIM_alpha=0.5):
+    def __init__(self,embed_dim,num_heads, encode_type='direct',TIM_alpha=0.5,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=1, encode_type=encode_type)
         self.in_channels = embed_dim // num_heads
         #  channels may depends on the shape of input
         self.TIM_conv = nn.Conv1d(in_channels=self.in_channels, out_channels=self.in_channels, kernel_size=5, stride=1,
                                     padding=2, bias=True)
-        self.in_lif = st_LIFNode(tau=2.0, v_threshold=0.3, layer_by_layer=False, step=1)  # spike-driven
-        self.out_lif = st_LIFNode(tau=2.0, v_threshold=0.5, layer_by_layer=False, step=1)  # spike-driven
+        self.in_lif = node(tau=tau,act_func=act_func,threshold=threshold)  # spike-driven
+        self.out_lif = node(tau=tau,act_func=act_func,threshold=threshold)  # spike-driven
         self.tim_alpha = TIM_alpha
 
     # input [T, B, H, N, C/H]
@@ -262,20 +263,20 @@ class SSA_TIM(SSA):
     Spiking Transformer MLPs
 '''
 class MLP(BaseModule):
-    def __init__(self, in_features, step=10, encode_type='direct', mlp_ratio = 4.0, out_features=None,mlp_drop=0.):
+    def __init__(self, in_features, step=10, encode_type='direct', mlp_ratio = 4.0, out_features=None,mlp_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=step, encode_type=encode_type)
         out_features = out_features or in_features
         hidden_features = int(in_features * mlp_ratio)
         self.mlp_drop = mlp_drop
         self.fc1_conv = nn.Conv1d(in_features, hidden_features, kernel_size=1, stride=1)
         self.fc1_bn = nn.BatchNorm1d(hidden_features)
-        self.fc1_lif = st_LIFNode(step=step)
+        self.fc1_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.MLP_drop = nn.Dropout(self.mlp_drop)
 
         self.fc2_conv = nn.Conv1d(hidden_features, out_features, kernel_size=1, stride=1)
         self.fc2_bn = nn.BatchNorm1d(out_features)
-        self.fc2_lif = st_LIFNode(step=step)
+        self.fc2_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
     def forward(self, x):
         self.reset()
@@ -311,15 +312,15 @@ class SCS_block(nn.Module):
         return x
 
 '''
-    Spiking Transformer Useful Blocks
+    Spiking Transformer OTHER Useful Blocks
 '''
-class Block(nn.Module):
-    def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0.,mlp_drop=0.,):
+class Spikf_Block(nn.Module):
+    def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0.,mlp_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__()
         self.norm1 = nn.LayerNorm(embed_dim)
-        self.attn = SSA(embed_dim, step=step, num_heads=num_heads,attn_drop=attn_drop, scale=scale,)
+        self.attn = SSA(embed_dim, step=step, num_heads=num_heads,attn_drop=attn_drop, scale=scale,node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.norm2 = nn.LayerNorm(embed_dim)
-        self.mlp = MLP(in_features=embed_dim,mlp_ratio=mlp_ratio,out_features=embed_dim,mlp_drop=mlp_drop)
+        self.mlp = MLP(in_features=embed_dim,mlp_ratio=mlp_ratio,out_features=embed_dim,mlp_drop=mlp_drop,node=node,tau=tau,act_func=act_func,threshold=threshold)
     def forward(self, x):
         x = x + self.attn(x)
         x = x + self.mlp(x)
@@ -331,7 +332,6 @@ class cls_head(nn.Module):
         self.head = nn.Linear(embed_dim, num_classes)
 
     def forward(self, x):
-
         x = self.head(x)
         return x
 

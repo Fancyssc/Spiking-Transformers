@@ -40,10 +40,9 @@ from timm.utils import ApexScaler, NativeScaler
 from torch.utils.tensorboard import SummaryWriter
 
 # load spiking transformer models
-from spiking_transformers import *
+from spiking_transformers import spikformer
 
 # choose ur device here
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 torch.backends.cudnn.benchmark = True
@@ -251,7 +250,7 @@ parser.add_argument('--pin-mem', action='store_true', default=False,
                     help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
 parser.add_argument('--no-prefetcher', action='store_true', default=False,
                     help='disable fast prefetcher')
-parser.add_argument('--output', default='/home/shensicheng/code/SpikingTransformers', type=str, metavar='PATH',
+parser.add_argument('--output', default='/home/shensicheng/code/Spiking-Transformers/logs', type=str, metavar='PATH',
                     help='path to output folder (default: none, current dir)')
 parser.add_argument('--tensorboard-dir', default='./runs', type=str)
 parser.add_argument('--eval-metric', default='top1', type=str, metavar='EVAL_METRIC',
@@ -427,7 +426,6 @@ def main():
 
     model = create_model(
         args.model,
-        # pretrained=args.pretrained,
         # num_classes=args.num_classes,
         # dataset=args.dataset,
         # step=args.step,
