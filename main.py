@@ -445,7 +445,7 @@ def main():
         # tet_loss=args.tet_loss,
         # sew_cnf=args.sew_cnf,
         # conv_type=args.conv_type,
-    )
+    ).to(args.device)
 
     _logger.info('[MODEL ARCH]\n{}'.format(model))
 

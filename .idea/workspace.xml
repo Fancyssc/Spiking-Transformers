@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/st_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/node.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,
-    &quot;accountId&quot;: &quot;61729cf9-2d5e-47dc-a079-bc45d518599e&quot;
+    &quot;accountId&quot;: &quot;14bbac20-c491-4626-ac20-6dd445277b07&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -70,7 +68,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -109,6 +107,9 @@
       <workItem from="1728483861774" duration="3387000" />
       <workItem from="1728919921585" duration="875000" />
       <workItem from="1728920821252" duration="820000" />
+      <workItem from="1729052511188" duration="141000" />
+      <workItem from="1729052664461" duration="1262000" />
+      <workItem from="1729068440967" duration="4025000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -318,7 +319,87 @@
       <option name="project" value="LOCAL" />
       <updated>1728487296192</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052540736</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052540736</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052546012</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052546012</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052573243</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052573243</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052620522</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052620522</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052672589</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052672589</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052736055</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052736055</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052840611</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052840611</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052904834</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052904834</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729052979812</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1729052979812</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1729053333341</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1729053333341</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,6 +431,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Code of TIM added, Readme updated." />
     <MESSAGE value="Model Updated" />
+    <MESSAGE value="code re-configured" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
     <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
   </component>

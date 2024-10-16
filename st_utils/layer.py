@@ -86,13 +86,13 @@ class SPSv1(SPS):
         x = self.maxpool2(x.flatten(0,1)).reshape(T, B, -1, H // 8, W // 8)
 
         x = self.ConvBnSn(x,self.proj_conv3,self.proj_bn3,self.proj_lif3)
-        x = self.maxpool3(x.flatten(0,1))
+        x = self.maxpool3(x.flatten(0,1)).reshape(T, B, -1, H // 16, W // 16)
 
         x_feat = x.reshape(T, B, -1, H // 16, W // 16).contiguous()
         x = self.ConvBnSn(x,self.rpe_conv,self.rpe_bn,self.rpe_lif)
 
         x = x + x_feat
-        x = x.flatten(-2).transpose(-1, -2)  # T,B,N,C
+        x = x.flatten(-2)  # T,B,C,N
         return x
 
 #Spikformer v2 SPS
@@ -139,7 +139,7 @@ class SPSv2(SPS):
         x = self.ConvBnSn(x, self.rpe_conv, self.rpe_bn, self.rpe_lif)
 
         x = x + x_feat
-        x = x.flatten(-2).transpose(-1, -2)  # T,B,N,C
+        x = x.flatten(-2) # T B C N
         return x
 
 
@@ -178,13 +178,14 @@ class SSA(BaseModule):
 
     def qkv(self,x,conv,bn,lif):
         T, B, C, N = x.shape
-        r = conv(x)  # TB C N
+        r = conv(x.flatten(0,1))  # TB C N
         r = bn(r).reshape(T, B, C, N).contiguous()  # T B C N
-        r = lif(r.flatten(0, 1)).reshape(T, B, C, N)  # TB C N
-        return r.reshape(T, B, N, self.num_heads, C // self.num_heads).permute(0, 1, 3, 2, 4).contiguous()
+        r = lif(r.flatten(0, 1)).reshape(T, B, C, N)  # T B C N
+        return r.transpose(-2,-1).reshape(T, B, N, self.num_heads, C // self.num_heads).permute(0, 1, 3, 2, 4).contiguous() #T B H N C/H
 
     def attn_cal(self,q,k,v):
-        T, B, N, C = q.shape
+        T, B, H, N, CoH = q.shape  # CoH： C/H
+        C = CoH * H
 
         attn = (q @ k.transpose(-2, -1)) * self.scale
         r = (attn @ v) * self.scale
@@ -197,11 +198,10 @@ class SSA(BaseModule):
 
     def forward(self, x):
         self.reset()
-        x_for_qkv = x.flatten(0, 1)  # TB, C N
 
-        q = self.qkv(x_for_qkv,self.q_conv,self.q_bn,self.q_lif)
-        k = self.qkv(x_for_qkv,self.k_conv,self.k_bn,self.k_lif)
-        v = self.qkv(x_for_qkv,self.v_conv,self.v_bn,self.v_lif)
+        q = self.qkv(x,self.q_conv,self.q_bn,self.q_lif)
+        k = self.qkv(x,self.k_conv,self.k_bn,self.k_lif)
+        v = self.qkv(x,self.v_conv,self.v_bn,self.v_lif)
 
         x = self.attn_cal(q,k,v)
 
