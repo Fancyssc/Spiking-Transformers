@@ -41,6 +41,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 # load spiking transformer models
 from spiking_transformers import spikformer
+from spiking_transformers import spikformer_TIM
 
 # choose ur device here
 

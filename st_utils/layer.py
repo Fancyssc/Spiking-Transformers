@@ -215,8 +215,8 @@ class TIM(BaseModule):
         #  channels may depends on the shape of input
         self.TIM_conv = nn.Conv1d(in_channels=self.in_channels, out_channels=self.in_channels, kernel_size=5, stride=1,
                                     padding=2, bias=True)
-        self.in_lif = node(tau=tau,act_func=act_func,threshold=threshold)  # spike-driven
-        self.out_lif = node(tau=tau,act_func=act_func,threshold=threshold)  # spike-driven
+        self.in_lif = node(step=1,tau=tau,act_func=act_func,threshold=threshold)  # spike-driven
+        self.out_lif = node(step=1,tau=tau,act_func=act_func,threshold=threshold)  # spike-driven
         self.tim_alpha = TIM_alpha
 
     # input [T, B, H, N, C/H]
@@ -233,12 +233,13 @@ class TIM(BaseModule):
                 output.append(x_tim)
             # other steps
             else:
-                x_tim = self.TIM_conv(x_tim.flatten(0, 1)).reshape(B, H, N, CoH).contiguous()
+                x_tim = self.TIM_conv(x_tim.flatten(0, 1).transpose(-2,-1)).transpose(-2,-1).reshape(B, H, N, CoH).contiguous()
                 x_tim = self.in_lif(x_tim) * self.tim_alpha + x[i] * (1 - self.tim_alpha)
                 x_tim = self.out_lif(x_tim)
                 output.append(x_tim)
 
         return torch.stack(output)  # T B H, N, C/H
+
 class SSA_TIM(SSA):
     def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25):
         super(SSA_TIM, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
@@ -246,13 +247,12 @@ class SSA_TIM(SSA):
         self.tim = TIM(embed_dim, num_heads, encode_type=encode_type, TIM_alpha=TIM_alpha)
     def forward(self, x):
         self.reset()
-        x_for_qkv = x.flatten(0, 1)  # TB, C N
 
-        q = self.qkv(x_for_qkv,self.q_conv,self.q_bn,self.q_lif)
-        k = self.qkv(x_for_qkv,self.k_conv,self.k_bn,self.k_lif)
-        v = self.qkv(x_for_qkv,self.v_conv,self.v_bn,self.v_lif)
+        q = self.qkv(x,self.q_conv,self.q_bn,self.q_lif)
+        k = self.qkv(x,self.k_conv,self.k_bn,self.k_lif)
+        v = self.qkv(x,self.v_conv,self.v_bn,self.v_lif)
 
-        q = self.TIM(q)
+        q = self.tim(q)
 
         x = self.attn_cal(q,k,v)
 
@@ -315,10 +315,16 @@ class SCS_block(nn.Module):
     Spiking Transformer OTHER Useful Blocks
 '''
 class Spikf_Block(nn.Module):
-    def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0.,mlp_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
+    """
+    :param: if_TIM: if use Temporal Interaction Module(IJCAI2024)
+    """
+    def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0.,mlp_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5,if_TIM=False):
         super().__init__()
         self.norm1 = nn.LayerNorm(embed_dim)
-        self.attn = SSA(embed_dim, step=step, num_heads=num_heads,attn_drop=attn_drop, scale=scale,node=node,tau=tau,act_func=act_func,threshold=threshold)
+        if if_TIM:
+            self.attn = SSA_TIM(embed_dim, num_heads=num_heads, step=step, scale=scale)
+        else:
+            self.attn = SSA(embed_dim, step=step, num_heads=num_heads,attn_drop=attn_drop, scale=scale,node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.norm2 = nn.LayerNorm(embed_dim)
         self.mlp = MLP(in_features=embed_dim,mlp_ratio=mlp_ratio,out_features=embed_dim,mlp_drop=mlp_drop,node=node,tau=tau,act_func=act_func,threshold=threshold)
     def forward(self, x):
