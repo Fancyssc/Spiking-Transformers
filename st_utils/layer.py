@@ -50,11 +50,12 @@ class SPS(BaseModule):
 
 
     #Conv - BN - LIF layer in SPS
-    def ConvBnSn(self,x,conv,bn,lif):
+    def ConvBnSn(self,x,conv,bn,lif=None):
         T, B, C, H, W = x.shape
         x = conv(x.flatten(0,1)) # TB C H W
         x = bn(x).reshape(T, B, -1, H, W).contiguous()
-        x = lif(x.flatten(0, 1)).reshape(T, B, -1, H, W).contiguous()
+        if lif is not None:
+            x = lif(x.flatten(0, 1)).reshape(T, B, -1, H, W).contiguous()
         return x
 
     def forward(self, x):
@@ -77,16 +78,16 @@ class SPSv1(SPS):
         assert self.embed_dims % 8 == 0, 'embed_dims must be divisible by 8 in Spikformer'
 
         x = self.ConvBnSn(x,self.proj_conv,self.proj_bn,self.proj_lif)
-        x = self.maxpool(x.flatten(0,1)).reshape(T, B, -1, H // 2, W // 2)
+        x = self.maxpool(x.flatten(0,1)).reshape(T, B, -1, H // 2, W // 2).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv1,self.proj_bn1,self.proj_lif1)
-        x = self.maxpool1(x.flatten(0,1)).reshape(T, B, -1, H // 4, W // 4)
+        x = self.maxpool1(x.flatten(0,1)).reshape(T, B, -1, H // 4, W // 4).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv2,self.proj_bn2,self.proj_lif2)
-        x = self.maxpool2(x.flatten(0,1)).reshape(T, B, -1, H // 8, W // 8)
+        x = self.maxpool2(x.flatten(0,1)).reshape(T, B, -1, H // 8, W // 8).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv3,self.proj_bn3,self.proj_lif3)
-        x = self.maxpool3(x.flatten(0,1)).reshape(T, B, -1, H // 16, W // 16)
+        x = self.maxpool3(x.flatten(0,1)).reshape(T, B, -1, H // 16, W // 16).contiguous()
 
         x_feat = x.reshape(T, B, -1, H // 16, W // 16).contiguous()
         x = self.ConvBnSn(x,self.rpe_conv,self.rpe_bn,self.rpe_lif)
@@ -112,11 +113,12 @@ class SPSv2(SPS):
         self.scs_block2 = SCS_block(embed_dims//2)
         self.scs_block3 = SCS_block(embed_dims)
         #conv in SPS v2 down samples image
-    def ConvBnSn(self, x, conv, bn, lif):
+    def ConvBnSn(self, x, conv, bn, lif = None):
         T, B, C, H, W = x.shape
         x = conv(x.flatten(0, 1))  # TB C H W
         x = bn(x).reshape(T, B, -1, H//2, W//2).contiguous()
-        x = lif(x.flatten(0, 1)).reshape(T, B, -1, H//2, W//2).contiguous()
+        if lif is not None:
+            x = lif(x.flatten(0, 1)).reshape(T, B, -1, H//2, W//2).contiguous()
         return x
 
     def forward(self, x):
@@ -124,13 +126,13 @@ class SPSv2(SPS):
         T, B, C, H, W = x.shape
 
         x = self.ConvBnSn(x,self.proj_conv,self.proj_bn,self.proj_lif)
-        x = self.scs_block(x.flatten(0,1)).reshape(T, B, -1, H // 2, W // 2)
+        x = self.scs_block(x.flatten(0,1)).reshape(T, B, -1, H // 2, W // 2).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv1,self.proj_bn1,self.proj_lif1)
-        x = self.scs_block1(x.flatten(0,1)).reshape(T, B, -1, H // 4, W // 4)
+        x = self.scs_block1(x.flatten(0,1)).reshape(T, B, -1, H // 4, W // 4).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv2,self.proj_bn2,self.proj_lif2)
-        x = self.scs_block2(x.flatten(0,1)).reshape(T, B, -1, H // 8, W // 8)
+        x = self.scs_block2(x.flatten(0,1)).reshape(T, B, -1, H // 8, W // 8).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv3,self.proj_bn3,self.proj_lif3)
         x = self.scs_block3(x.flatten(0,1))
@@ -141,6 +143,40 @@ class SPSv2(SPS):
         x = x + x_feat
         x = x.flatten(-2) # T B C N
         return x
+
+#Spike-Driven Transformer SPS
+class SPS_sdt(SPS):
+    def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
+                 embed_dims=256,node=st_LIFNode,tau=2.0, act_func=Sigmoid_Grad,threshold=0.5):
+        super().__init__(step=step, encode_type=encode_type)
+        self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+        self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+        self.maxpool2 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+        self.maxpool3 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+
+    def forward(self, x):
+        self.reset()
+        T, B, C, H, W = x.shape
+        assert self.embed_dims % 8 == 0, 'embed_dims must be divisible by 8 in Spikformer'
+
+        x = self.ConvBnSn(x,self.proj_conv,self.proj_bn,self.proj_lif)
+        x = self.maxpool(x.flatten(0,1)).reshape(T, B, -1, H // 2, W // 2).contiguous()
+
+        x = self.ConvBnSn(x,self.proj_conv1,self.proj_bn1,self.proj_lif1)
+        x = self.maxpool1(x.flatten(0,1)).reshape(T, B, -1, H // 4, W // 4).contiguous()
+
+        x = self.ConvBnSn(x,self.proj_conv2,self.proj_bn2,self.proj_lif2)
+        x = self.maxpool2(x.flatten(0,1)).reshape(T, B, -1, H // 8, W // 8).contiguous()
+
+        # maxpool -> lif
+        x = self.ConvBnSn(x,self.proj_conv3,self.proj_bn3,None)
+        x = self.maxpool3(x.flatten(0,1))
+        x = self.proj_lif3(x).reshape(T, B, -1, H // 16, W // 16).contiguous()
+
+        x_feat = x
+        x = self.ConvBnSn(x,self.rpe_conv,self.rpe_bn,None)
+
+        return x+x_feat # T B -1 H/16 W/16
 
 
 
@@ -176,6 +212,7 @@ class SSA(BaseModule):
         self.proj_bn = nn.BatchNorm1d(embed_dim)
         self.proj_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
+        self.pool = nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1))
     def qkv(self,x,conv,bn,lif):
         T, B, C, N = x.shape
         r = conv(x.flatten(0,1))  # TB C N
@@ -258,6 +295,66 @@ class SSA_TIM(SSA):
 
         return x
 
+    def attn_cal(self,q,k,v):
+        kv = k.mul(v)  # piont-wise multiplication
+
+
+class SDSA(SSA):
+    def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,scale=0.25,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
+        super(SDSA, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
+        self.shortcut_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
+
+        self.q_conv = nn.Conv2d(embed_dim,embed_dim, kernel_size=1, stride=1, bias=False)
+        self.q_bn = nn.BatchNorm2d(embed_dim)
+
+        self.k_conv = nn.Conv2d(embed_dim,embed_dim, kernel_size=1, stride=1, bias=False)
+        self.k_bn = nn.BatchNorm2d(embed_dim)
+
+        self.v_conv = nn.Conv2d(embed_dim,embed_dim, kernel_size=1, stride=1, bias=False)
+        self.v_bn = nn.BatchNorm2d(embed_dim)
+
+        self.pool = nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1))
+
+        self.kv_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
+    def qkv(self,x,conv,bn,lif):
+        T, B, C, H, W = x.shape
+        r = conv(x.flatten(0,1))  # TB C N
+        r = bn(r).reshape(T, B, C, H, W ).contiguous()  # T B C N
+        r = lif(r.flatten(0, 1)).reshape(T, B, C, H, W ).contiguous()  # T B C N
+        return r
+
+    def sdsa_cal(self,q,k,v,lif):
+        T, B, H, N, CoH = q.shape  # CoH： C/H
+        C = CoH * H
+
+        kv = k.mul(v) # point-wise multiplication
+        kv = self.pool(kv)
+        kv = kv.sum(dim=-2, keepdim=True)
+        kv = lif(kv.flatten(0,1)).reshape(T, B, H ,-1, CoH).contiguous()
+        return q.mul(kv)
+
+    def forward(self, x):
+        self.reset()
+        T, B, C, H, W = x.shape
+        N = H * W
+        x_id = x
+        x = self.shortcut_lif(x.flatten(0,1)).reshape(T, B, C, H, W).contiguous()
+
+        q = self.qkv(x,self.q_conv,self.q_bn,self.q_lif)
+        q = q.flatten(-2,-1).transpose(-1, -2).reshape(T, B, N, self.num_heads, C // self.num_heads).permute(0, 1, 3, 2, 4).contiguous()
+
+        k = self.qkv(x,self.k_conv,self.k_bn,self.k_lif)
+        k = self.pool(k).flatten(-2,-1).transpose(-1, -2).reshape(T, B, N, self.num_heads, C // self.num_heads).permute(0, 1, 3, 2, 4).contiguous()
+
+        v = self.qkv(x,self.v_conv,self.v_bn,self.v_lif)
+        v = self.pool(v).flatten(-2,-1).transpose(-1, -2).reshape(T, B, N, self.num_heads, C // self.num_heads).permute(0, 1, 3, 2, 4).contiguous()
+
+        x = self.sdsa_cal(q,k,v,self.kv_lif)
+        x = self.pool(x).transpose(3, 4).reshape(T, B, C, H, W).contiguous()
+        return x + x_id
+
+
+
 
 '''
     Spiking Transformer MLPs
@@ -311,9 +408,45 @@ class SCS_block(nn.Module):
         x = self.scs_block(x)
         return x
 
+# Spike-driven Transformer MLP
+# Shortcut
+class Sdt_MLP(BaseModule):
+
+    def __init__(self, in_features, step=10, encode_type='direct', mlp_ratio=2.0, out_features=None, mlp_drop=0.,
+                 node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5):
+        super().__init__(step=step, encode_type=encode_type)
+        out_features = out_features or in_features
+        hidden_features = int(in_features * mlp_ratio)
+        self.mlp_drop = mlp_drop
+
+        self.fc1_lif = node(step=step, tau=tau, act_func=act_func, threshold=threshold)
+        self.fc1_conv = nn.Conv2d(in_features, hidden_features, kernel_size=1, stride=1)
+        self.fc1_bn = nn.BatchNorm2d(hidden_features)
+
+        self.MLP_drop = nn.Dropout(self.mlp_drop)
+
+        self.fc2_lif = node(step=step, tau=tau, act_func=act_func, threshold=threshold)
+        self.fc2_conv = nn.Conv2d(hidden_features, out_features, kernel_size=1, stride=1)
+        self.fc2_bn = nn.BatchNorm2d(out_features)
+
+    def forward(self, x):
+        self.reset()
+        x_id = x
+        T, B, C, H, W = x.shape
+        x = self.fc1_lif(x.flatten(0, 1)).reshape(T, B, -1, H, W).contiguous()
+        x = self.fc1_conv(x.flatten(0, 1))
+        x = self.fc1_bn(x).reshape(T, B, -1, H, W).contiguous()
+
+        if self.mlp_drop > 0:
+            x = self.MLP_drop(x)
+        x = self.fc2_lif(x.flatten(0, 1)).reshape(T, B, -1, H, W).contiguous()
+        x = self.fc2_conv(x.flatten(0, 1))
+        x = self.fc2_bn(x).reshape(T, B, C, H, W).contiguous()
+        return x + x_id
 '''
     Spiking Transformer OTHER Useful Blocks
 '''
+# Spikformer block
 class Spikf_Block(nn.Module):
     """
     :param: if_TIM: if use Temporal Interaction Module(IJCAI2024)
@@ -332,6 +465,22 @@ class Spikf_Block(nn.Module):
         x = x + self.mlp(x)
         return x
 
+
+# Spike-driven Transformer block
+class Sdt_Block(nn.Module):
+    def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0., mlp_drop=0.,
+                 node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5, if_TIM=False):
+        super().__init__()
+        self.attn = SDSA(embed_dim, num_heads=num_heads, step=step, scale=scale)
+        self.mlp = Sdt_MLP(in_features=embed_dim, mlp_raddtio=mlp_ratio, mlp_drop=mlp_drop, node=node, tau=tau,
+                           act_func=act_func, threshold=threshold)
+
+    def forward(self, x):
+        # residual completed in shortcut calculation
+        x_attn = self.attn(x)
+        return self.mlp(x_attn)
+
+
 class cls_head(nn.Module):
     def __init__(self, embed_dim, num_classes):
         super(cls_head, self).__init__()
@@ -340,4 +489,3 @@ class cls_head(nn.Module):
     def forward(self, x):
         x = self.head(x)
         return x
-

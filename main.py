@@ -40,8 +40,7 @@ from timm.utils import ApexScaler, NativeScaler
 from torch.utils.tensorboard import SummaryWriter
 
 # load spiking transformer models
-from spiking_transformers import spikformer
-from spiking_transformers import spikformer_TIM
+from spiking_transformers import spikformer, spikformer_TIM, sdt
 
 # choose ur device here
 

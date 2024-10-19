@@ -72,7 +72,7 @@ class lbl_BaseNode(BaseNode):
             if len(inputs.shape) == 5:
                 outputs = rearrange(inputs, 't b c w h -> (t b) c w h')
 
-            # 加入适配Transformer T B N C的rearange2op分支
+            # adapt Spikformer
             elif len(inputs.shape) == 4:
                 outputs = rearrange(inputs, ' t b n c -> (t b) n c')
             elif len(inputs.shape) == 3:
