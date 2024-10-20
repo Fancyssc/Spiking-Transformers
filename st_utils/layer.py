@@ -184,40 +184,42 @@ class SPS_sdt(SPS):
 class PEDS_init(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
                  embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super().__init__(step=step, encode_type=encode_type)
+        super().__init__(step=step, encode_type=encode_type,embed_dims=embed_dims)
         del self.rpe_conv, self.rpe_bn, self.rpe_lif # less param
         # self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool2 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool3 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
 
-        self.proj_res_conv = nn.Conv2d(embed_dims // 4, embed_dims, kernel_size=1, stride=4, padding=0, bias=False)
-        self.proj_res_bn = nn.BatchNorm2d(embed_dims)
-        self.proj_res_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
+        self.pro_res_conv = nn.Conv2d(embed_dims // 4, embed_dims, kernel_size=1, stride=4, padding=0, bias=False)
+        self.pro_res_bn = nn.BatchNorm2d(embed_dims)
+        self.pro_res_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
     # Conv - BN - MP - LIF  in PEDS
     def ConvBnMpSN(self, x, conv, bn, mp, lif):
         T, B, C, H, W = x.shape
         x = conv(x.flatten(0, 1))  # TB C H W
         x = bn(x).reshape(T, B, -1, H, W).contiguous()
         if mp is not None:
-            x = mp(x).reshape(T, B, -1, H//2, W//2).contiguous()
+            x = mp(x.flatten(0,1)).reshape(T, B, -1, H//2, W//2).contiguous()
         if lif is not None:
             _,_,_,new_h, new_w = x.shape
             x = lif(x.flatten(0, 1)).reshape(T, B, -1, new_h, new_w).contiguous()
         return x
     def forward(self, x):
-        self.reset()
+
         assert self.embed_dims % 8 == 0, 'embed_dims must be divisible by 8 in Spikformer'
 
         x = self.ConvBnMpSN(x,self.proj_conv,self.proj_bn,None,self.proj_lif)
         x = self.ConvBnMpSN(x,self.proj_conv1,self.proj_bn1,self.maxpool1,self.proj_lif1)
 
         x_feat = x
-
         x = self.ConvBnMpSN(x,self.proj_conv2,self.proj_bn2,self.maxpool2,self.proj_lif2)
         x = self.ConvBnMpSN(x,self.proj_conv3,self.proj_bn3,self.maxpool3,self.proj_lif3)
 
-        x_feat = self.ConvBnMpSN(x_feat,self.proj_res_conv,self.proj_res_bn,None,self.proj_res_lif)
+        T, B, C, H, W = x.shape
+        x_feat = self.proj_res_conv(x_feat.flatten(0,1))
+        x_feat = self.pro_res_bn(x_feat).reshape(T, B, C, H, W).contiguous()
+        x_feat = self.pro_res_lif(x_feat.flatten(0,1)).reshape(T, B, C, H, W).contiguous()
 
         return x+x_feat  # T B Dim H//8 W//8
 
@@ -227,6 +229,7 @@ class PEDS_stage(SPS):
                  embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=step, encode_type=encode_type)
         del self.rpe_conv, self.rpe_bn, self.rpe_lif # less param
+        del self.proj_conv, self.proj_bn, self.proj_lif
         del self.proj_conv1, self.proj_bn1, self.proj_lif1
         del self.proj_conv2, self.proj_bn2, self.proj_lif2
         del self.proj_conv3, self.proj_bn3, self.proj_lif3
@@ -249,7 +252,7 @@ class PEDS_stage(SPS):
         x = conv(x.flatten(0, 1))  # TB C H W
         x = bn(x).reshape(T, B, -1, H, W).contiguous()
         if mp is not None:
-            x = mp(x).reshape(T, B, -1, H//2, W//2).contiguous()
+            x = mp(x.flatten(0,1)).reshape(T, B, -1, H//2, W//2).contiguous()
         if lif is not None:
             _,_,_,new_h, new_w = x.shape
             x = lif(x.flatten(0, 1)).reshape(T, B, -1, new_h, new_w).contiguous()
@@ -452,6 +455,7 @@ class QKTA(SSA):
     def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super(QKTA, self).__init__(embed_dim=embed_dim,step=step,encode_type=encode_type)
         del self.v_lif, self.v_conv, self.v_bn,self.res_lif   # less param
+        del self.pool
 
         self.num_heads = num_heads
         self.embed_dim = embed_dim
@@ -593,7 +597,7 @@ class Sdt_Block(nn.Module):
                  node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5, if_TIM=False):
         super().__init__()
         self.attn = SDSA(embed_dim, num_heads=num_heads, step=step, scale=scale)
-        self.mlp = Sdt_MLP(in_features=embed_dim, mlp_raddtio=mlp_ratio, mlp_drop=mlp_drop, node=node, tau=tau,
+        self.mlp = Sdt_MLP(in_features=embed_dim, mlp_ratio=mlp_ratio, mlp_drop=mlp_drop, node=node, tau=tau,
                            act_func=act_func, threshold=threshold)
 
     def forward(self, x):

@@ -122,7 +122,7 @@ class Spikformer_TIM(nn.Module):
 class SpikeDrivnTransf(nn.Module):
     def __init__(self, step=10,
                  img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
-                 embed_dim=256, num_heads=16, mlp_ratios=4, scale=0.25,mlp_drop=0.,
+                 embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__()
         self.step = step  # time step
@@ -139,7 +139,7 @@ class SpikeDrivnTransf(nn.Module):
                           act_func=act_func,threshold=threshold)
         #if_TIM = True
         block = nn.ModuleList([Sdt_Block(step=step,embed_dim=embed_dim,
-                                           num_heads=num_heads, mlp_ratio=mlp_ratios,
+                                           num_heads=num_heads, mlp_ratio=mlp_ratio,
                                            scale=scale, mlp_drop=mlp_drop, attn_drop=attn_drop,
                                            node=node,tau=2.0,act_func=act_func,threshold=threshold,if_TIM=True)
 
@@ -207,7 +207,7 @@ class QKFormer(nn.Module):
         stage2 = nn.ModuleList([SSA(
             embed_dim=embed_dim, num_heads=num_heads,scale=0.25,attn_drop=0.,node=node,
             tau=tau,act_func=act_func,threshold=threshold)
-            for j in range(1)])
+            for j in range(depths-1)])
 
         setattr(self, f"patch_embed1", patch_embed1)
         setattr(self, f"stage1", stage1)
@@ -236,35 +236,35 @@ class QKFormer(nn.Module):
             nn.init.constant_(m.weight, 1.0)
 
 
-def forward_features(self, x):
-    stage1 = getattr(self, f"stage1")
-    patch_embed1 = getattr(self, f"patch_embed1")
-    stage2 = getattr(self, f"stage2")
-    patch_embed2 = getattr(self, f"patch_embed2")
+    def forward_features(self, x):
+        stage1 = getattr(self, f"stage1")
+        patch_embed1 = getattr(self, f"patch_embed1")
+        stage2 = getattr(self, f"stage2")
+        patch_embed2 = getattr(self, f"patch_embed2")
 
-    x = patch_embed1(x)
-    for blk in stage1:
-        x = blk(x)
+        x = patch_embed1(x)
+        for blk in stage1:
+            x = blk(x)
 
-    x = patch_embed2(x)
-    for blk in stage2:
-        x = blk(x)
+        x = patch_embed2(x)
+        for blk in stage2:
+             x = blk(x)
 
-    return x.flatten(3).mean(3)
+        return x.flatten(3).mean(3)
 
 
-def forward(self, x):
-    x = x.permute(1, 0, 2, 3, 4)  # [T, N, 2, *, *]
-    x = self.forward_features(x)
-    x = self.head(x.mean(0))
-    return x
+    def forward(self, x):
+        x = x.permute(1, 0, 2, 3, 4)  # [T, N, 2, *, *]
+        x = self.forward_features(x)
+        x = self.head(x.mean(0))
+        return x
 
 # Registered Models
 @register_model
 def spikformer(pretrained=False,**kwargs):
     model = Spikformer(step=10,
                  img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
-                 embed_dim=256, num_heads=16, mlp_ratios=4, scale=0.25,mlp_drop=0.,
+                 embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5
     )
     model.default_cfg = _cfg()
@@ -274,7 +274,7 @@ def spikformer(pretrained=False,**kwargs):
 def spikformer_TIM(pretrained=False,**kwargs):
     model = Spikformer_TIM(step=10,
                  img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
-                 embed_dim=256, num_heads=16, mlp_ratios=4, scale=0.25,mlp_drop=0.,
+                 embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5)
     model.default_cfg = _cfg()
     return model
@@ -283,8 +283,18 @@ def spikformer_TIM(pretrained=False,**kwargs):
 def sdt(pretrained=False,**kwargs):
     model = SpikeDrivnTransf(step=10,
                            img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
-                           embed_dim=256, num_heads=16, mlp_ratios=4, scale=0.25, mlp_drop=0.,
+                           embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25, mlp_drop=0.,
                            attn_drop=0., depths=2, node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5)
+    model.default_cfg = _cfg()
+    return model
+
+@register_model
+def qkformer(pretrained=False, **kwargs):
+    model = QKFormer(
+        patch_size=16, embed_dim=256, num_heads=16, mlp_ratio=4,
+        in_channels=2, num_classes=10, scale=0.25, mlp_drop=0.,
+                           attn_drop=0., depths=2, node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5
+    )
     model.default_cfg = _cfg()
     return model
 

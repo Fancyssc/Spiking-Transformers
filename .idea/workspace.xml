@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Spike-Driven Transformer Available Now">
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="QKFormer added, waiting for adjustment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/st_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layer.py" afterDir="false" />
     </list>
@@ -109,7 +110,7 @@
       <workItem from="1729170050824" duration="2016000" />
       <workItem from="1729212601965" duration="2988000" />
       <workItem from="1729234310343" duration="10063000" />
-      <workItem from="1729401894031" duration="11159000" />
+      <workItem from="1729401894031" duration="15318000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -327,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729353543621</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="QKFormer added, waiting for adjustment">
+      <option name="closed" value="true" />
+      <created>1729414225318</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1729414225318</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,6 +370,7 @@
     <MESSAGE value="Model Updated" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
     <MESSAGE value="Spike-Driven Transformer Available Now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Spike-Driven Transformer Available Now" />
+    <MESSAGE value="QKFormer added, waiting for adjustment" />
+    <option name="LAST_COMMIT_MESSAGE" value="QKFormer added, waiting for adjustment" />
   </component>
 </project>
