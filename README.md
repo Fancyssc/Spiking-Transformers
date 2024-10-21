@@ -7,6 +7,8 @@ Spiking Neural Networks (SNNs) are particularly efficient, energy-saving, and bi
 ### Implemented Models
 Due to the unique characteristics of SNNs, models are typically trained on traditional datasets such as ImageNet and CIFAR10/100, as well as on neuromorphic datasets like **CIFAR10-DVS(DVSC10)**. These datasets are dimensionally incompatible with each other. Therefore, in this phase, we prioritize reproducing the part of these models that is adapted to DVS datasets.
 
+<div align="center">
+
 | Name  | Publication  | Step | Acc@1 on DVSC10 |
 | :---: | :---: | :---: | :---: | 
 | **Spikformer**| [ICLR 2023](https://openreview.net/forum?id=frE4fUwz_h) | 10/16| 78.9/80.9 |
@@ -14,7 +16,7 @@ Due to the unique characteristics of SNNs, models are typically trained on tradi
 | **TIM**| [IJCAI 2024](https://www.ijcai.org/proceedings/2024/0347.pdf)| 10| 81.6 | 
 | **Spike-driven Transformer**| [NuerIPS 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/ca0f5358dbadda74b3049711887e9ead-Abstract-Conference.html)| 16| 80.0 | 
 |**QKFormer** | [NeurIPS 2024](https://arxiv.org/abs/2403.16552v2)| 16 | 84.0|
-
+</div>
 
 ## Models in comming soon
         
