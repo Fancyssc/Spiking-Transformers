@@ -193,7 +193,7 @@ class QKFormer(nn.Module):
                           node=node,tau=tau,
                           act_func=act_func,threshold=threshold)
 
-        stage1 = nn.ModuleList([SSA(embed_dim=embed_dim//2, num_heads=num_heads,node=node,act_func=act_func,threshold=threshold,tau=tau)
+        stage1 = nn.ModuleList([QKTA(embed_dim=embed_dim//2, num_heads=num_heads,node=node,act_func=act_func,threshold=threshold,tau=tau)
             for j in range(1)])
 
         patch_embed2 = PEDS_stage(step=step,
@@ -217,14 +217,6 @@ class QKFormer(nn.Module):
         # classification head
         self.head = nn.Linear(embed_dim, num_classes) if num_classes > 0 else nn.Identity()
         self.apply(self._init_weights)
-
-    @torch.jit.ignore
-    def no_weight_decay(self):
-        return {'pose_embed'}
-
-    @torch.jit.ignore
-    def _get_pos_embed(self, pos_embed, patch_embed, H, W):
-        return None
 
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):

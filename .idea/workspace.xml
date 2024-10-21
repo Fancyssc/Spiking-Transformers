@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="QKFormer added, waiting for adjustment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/st_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layer.py" afterDir="false" />
     </list>
@@ -111,6 +110,10 @@
       <workItem from="1729212601965" duration="2988000" />
       <workItem from="1729234310343" duration="10063000" />
       <workItem from="1729401894031" duration="15318000" />
+      <workItem from="1729440336860" duration="14000" />
+      <workItem from="1729482204790" duration="479000" />
+      <workItem from="1729482689821" duration="22000" />
+      <workItem from="1729482750357" duration="5574000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -336,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729414225318</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="QKFormer added, waiting for adjustment">
+      <option name="closed" value="true" />
+      <created>1729440342648</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729440342648</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

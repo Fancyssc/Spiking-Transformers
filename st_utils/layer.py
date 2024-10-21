@@ -191,9 +191,9 @@ class PEDS_init(SPS):
         self.maxpool2 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool3 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
 
-        self.pro_res_conv = nn.Conv2d(embed_dims // 4, embed_dims, kernel_size=1, stride=4, padding=0, bias=False)
-        self.pro_res_bn = nn.BatchNorm2d(embed_dims)
-        self.pro_res_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
+        self.proj_res_conv = nn.Conv2d(embed_dims // 4, embed_dims, kernel_size=1, stride=4, padding=0, bias=False)
+        self.proj_res_bn = nn.BatchNorm2d(embed_dims)
+        self.proj_res_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
     # Conv - BN - MP - LIF  in PEDS
     def ConvBnMpSN(self, x, conv, bn, mp, lif):
         T, B, C, H, W = x.shape
@@ -206,7 +206,7 @@ class PEDS_init(SPS):
             x = lif(x.flatten(0, 1)).reshape(T, B, -1, new_h, new_w).contiguous()
         return x
     def forward(self, x):
-
+        self.reset()
         assert self.embed_dims % 8 == 0, 'embed_dims must be divisible by 8 in Spikformer'
 
         x = self.ConvBnMpSN(x,self.proj_conv,self.proj_bn,None,self.proj_lif)
@@ -218,8 +218,8 @@ class PEDS_init(SPS):
 
         T, B, C, H, W = x.shape
         x_feat = self.proj_res_conv(x_feat.flatten(0,1))
-        x_feat = self.pro_res_bn(x_feat).reshape(T, B, C, H, W).contiguous()
-        x_feat = self.pro_res_lif(x_feat.flatten(0,1)).reshape(T, B, C, H, W).contiguous()
+        x_feat = self.proj_res_bn(x_feat).reshape(T, B, C, H, W).contiguous()
+        x_feat = self.proj_res_lif(x_feat.flatten(0,1)).reshape(T, B, C, H, W).contiguous()
 
         return x+x_feat  # T B Dim H//8 W//8
 
@@ -238,12 +238,12 @@ class PEDS_stage(SPS):
         self.proj_bn = nn.BatchNorm2d(embed_dims)
         self.proj_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
-        self.proj4_conv = nn.Conv2d(embed_dims, embed_dims, kernel_size=3, stride=1, padding=1, bias=False)
-        self.proj4_bn = nn.BatchNorm2d(embed_dims)
+        self.proj_conv4 = nn.Conv2d(embed_dims, embed_dims, kernel_size=3, stride=1, padding=1, bias=False)
+        self.proj_bn4 = nn.BatchNorm2d(embed_dims)
         self.maxpool4 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
-        self.proj4_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
+        self.proj_lif4 = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
-        self.proj_res_conv = nn.Conv2d(embed_dims // 2, embed_dims, kernel_size=1, stride=4, padding=0, bias=False)
+        self.proj_res_conv = nn.Conv2d(embed_dims // 2, embed_dims, kernel_size=1, stride=2, padding=0, bias=False)
         self.proj_res_bn = nn.BatchNorm2d(embed_dims)
         self.proj_res_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
     # Conv - BN - MP - LIF  in PEDS
@@ -259,14 +259,19 @@ class PEDS_stage(SPS):
         return x
     def forward(self, x):
         self.reset()
+        T, B, _, _, _ = x.shape
         assert self.embed_dims % 8 == 0, 'embed_dims must be divisible by 8 in Spikformer'
-
         x_feat = x
 
         x = self.ConvBnMpSN(x,self.proj_conv,self.proj_bn,None,self.proj_lif)
         x = self.ConvBnMpSN(x,self.proj_conv4,self.proj_bn4,self.maxpool4,self.proj_lif4)
 
-        x_feat = self.ConvBnMpSN(x_feat, self.proj_res_conv, self.proj_res_bn, None, self.proj_res_lif)
+
+        x_feat = self.proj_res_conv(x_feat.flatten(0, 1))
+        _, c_f, h_f, w_f = x_feat.shape
+        x_feat = self.proj_res_bn(x_feat).reshape(T, B, c_f, h_f, w_f).contiguous()
+        x_feat = self.proj_res_lif(x_feat.flatten(0, 1)).reshape(T, B, c_f, h_f, w_f).contiguous()
+
 
         return x+x_feat  # T B Dim H//2 W//2
 
@@ -308,6 +313,8 @@ class SSA(BaseModule):
 
         self.pool = nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1))
     def qkv(self,x,conv,bn,lif,num_heads=16):
+        if len(x.shape) == 5:
+            x = x.flatten(-2,-1)
         T, B, C, N = x.shape
         r = conv(x.flatten(0,1))  # TB C N
         r = bn(r).reshape(T, B, C, N).contiguous()  # T B C N
@@ -376,6 +383,7 @@ class SSA_TIM(SSA):
         super(SSA_TIM, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
         self.tim_alpha = TIM_alpha
         self.tim = TIM(embed_dim, num_heads, encode_type=encode_type, TIM_alpha=TIM_alpha)
+
     def forward(self, x):
         self.reset()
 
@@ -465,14 +473,15 @@ class QKTA(SSA):
         self.reset()
         T, B, C, H, W = x.shape
 
-        q = self.qkv(x.flatten(0,1),self.q_conv,self.q_bn,self.q_lif,self.num_heads) #T B H N C/H
-        k = self.qkv(x.flatten(0,1),self.k_conv,self.k_bn,self.k_lif,self.num_heads)
+        q = self.qkv(x,self.q_conv,self.q_bn,self.q_lif,self.num_heads) #T B H N C/H
+        k = self.qkv(x,self.k_conv,self.k_bn,self.k_lif,self.num_heads)
 
         q = torch.sum(q, dim=3, keepdim=True)
-        attn = self.attn_lif(q)
-        x = torch.mul(attn, k)
+        _, _, q_h, q_n, q_c = q.shape
+        attn = self.attn_lif(q.flatten(0,1)).reshape(T, B, q_h, q_n, q_c).contiguous()
+        x = torch.mul(attn, k) #torch.Size([10, 16, 16, 256, 8])
 
-        x = x.flatten(2, 3)
+        x = x.transpose(-2,-1).flatten(2,3)
         x = self.proj_bn(self.proj_conv(x.flatten(0, 1))).reshape(T, B, C, H, W)
         x = self.proj_lif(x.flatten(0,1)).reshape(T, B, C, H, W).contiguous()
 
