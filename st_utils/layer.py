@@ -397,8 +397,6 @@ class SSA_TIM(SSA):
 
         return x
 
-    def attn_cal(self,q,k,v):
-        kv = k.mul(v)  # piont-wise multiplication
 
 # Spike-driven Transformer (Nips 2024)
 class SDSA(SSA):
