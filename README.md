@@ -1,6 +1,6 @@
 # Spiking Transformers Reproduced With [BrainCog](http://www.brain-cog.network/)
 
-Spiking Neural Networks (SNNs) are particularly efficient, energy-saving, and biologically interpretable. Models like Spikformer have introduced the attention mechanism from Artificial Neural Networks (ANNs) into SNNs, achieving success across a variety of datasets. The success of **Spiking Transformers** undoubtedly demonstrates the vast potential of SNNs in a wide range of tasks. We provide a customizable solution that allows you to easily [**define your own Spiking Transformer**](#self-crafted-characteristic).
+Spiking Neural Networks (SNNs) are particularly efficient, energy-saving, and biologically interpretable. Models like Spikformer have introduced the attention mechanism from Artificial Neural Networks (ANNs) into SNNs, achieving success across a variety of datasets. The success of **Spiking Transformers** undoubtedly demonstrates the vast potential of SNNs in a wide range of tasks. We provide a customizable solution that allows you to easily [**define your own Spiking Transformer**](#design-your-own-spiking-transformer).
 
 **[BrainCog](https://github.com/BrainCog-X/Brain-Cog)** is a programming framework developed and open-sourced by [Braincog-Lab](http://www.brain-cog.network/) for brain-inspired tasks. With Braincog, it is easy to reproduce and integrate different Spiking Transformer models, enabling developers and researchers to use these open-source models more conveniently and make personalized modifications.
 
