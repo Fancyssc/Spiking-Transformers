@@ -30,7 +30,7 @@ class Spikformer(nn.Module):
                           act_func=act_func,threshold=threshold)
 
 
-        block = nn.ModuleList([Spikf_Block(step=step,embed_dim=embed_dim,
+        block = nn.ModuleList([Spikf_Block(step=step,embed_dim=embed_dim,img_h=img_h,patch_size=patch_size,
                                            num_heads=num_heads, mlp_ratio=mlp_ratio,
                                            scale=scale, mlp_drop=mlp_drop, attn_drop=attn_drop,
                                            node=node,tau=2.0,act_func=act_func,threshold=threshold)

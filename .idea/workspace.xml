@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2024_10_16_15_16____.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2024_10_17_20_08____.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_16_15_16_取消提交了更改_[更改]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_17_20_08_取消提交了更改_[更改]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/sftp.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_10_14_22_48____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_14_22_48_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Spikformer now support CIFAR10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +126,7 @@
       <workItem from="1729511729087" duration="310000" />
       <workItem from="1729576072195" duration="1399000" />
       <workItem from="1729585114683" duration="6686000" />
-      <workItem from="1729592185393" duration="1378000" />
+      <workItem from="1729592185393" duration="3136000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -448,7 +440,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729593548317</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Spikformer now support CIFAR10">
+      <option name="closed" value="true" />
+      <created>1729593576724</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1729593576724</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -57,7 +57,7 @@ In `st_utils/layer.py`, we provide commonly used classes for the reproduced mode
 It is important to note that you only need to align the inputs and outputs of each component or override class methods when necessary.
 
 
-#### Train Ur Own Modle
+#### Train Ur Own Model
 After constructed, Ur model should be regstered and imported in `main.py`.  
 
 

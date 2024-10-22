@@ -347,10 +347,11 @@ class SSA(BaseModule):
 
 # TIM（IJCAI 2024）
 class TIM(BaseModule):
-    def __init__(self,embed_dim,num_heads, encode_type='direct',TIM_alpha=0.5,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
+    def __init__(self,embed_dim,num_heads, img_h=128,patch_size=16, encode_type='direct',TIM_alpha=0.5,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=1, encode_type=encode_type)
-        self.in_channels = embed_dim // num_heads
-        #  channels may depends on the shape of input
+        self.in_channels = (img_h // patch_size) ** 2
+        #  channels = #tokens
+        #  The origunal TIM use 64x64 as input but we adapt 128x128 here
         self.TIM_conv = nn.Conv1d(in_channels=self.in_channels, out_channels=self.in_channels, kernel_size=5, stride=1,
                                     padding=2, bias=True)
         self.in_lif = node(step=1,tau=tau,act_func=act_func,threshold=threshold)  # spike-driven
@@ -371,7 +372,7 @@ class TIM(BaseModule):
                 output.append(x_tim)
             # other steps
             else:
-                x_tim = self.TIM_conv(x_tim.flatten(0, 1).transpose(-2,-1)).transpose(-2,-1).reshape(B, H, N, CoH).contiguous()
+                x_tim = self.TIM_conv(x_tim.flatten(0, 1)).reshape(B, H, N, CoH).contiguous()
                 x_tim = self.in_lif(x_tim) * self.tim_alpha + x[i] * (1 - self.tim_alpha)
                 x_tim = self.out_lif(x_tim)
                 output.append(x_tim)
@@ -379,10 +380,10 @@ class TIM(BaseModule):
         return torch.stack(output)  # T B H, N, C/H
 # TIM (IJCAI 2024)
 class SSA_TIM(SSA):
-    def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25):
+    def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25,img_h=128,patch_size=16):
         super(SSA_TIM, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
         self.tim_alpha = TIM_alpha
-        self.tim = TIM(embed_dim, num_heads, encode_type=encode_type, TIM_alpha=TIM_alpha)
+        self.tim = TIM(embed_dim, num_heads, encode_type=encode_type, TIM_alpha=TIM_alpha,img_h=img_h,patch_size=patch_size)
 
     def forward(self, x):
         self.reset()
@@ -583,11 +584,11 @@ class Spikf_Block(nn.Module):
     """
     :param: if_TIM: if use Temporal Interaction Module(IJCAI2024)
     """
-    def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0.,mlp_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5,if_TIM=False):
+    def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0.,mlp_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5,if_TIM=False,img_h=128,patch_size=16):
         super().__init__()
         self.norm1 = nn.LayerNorm(embed_dim)
         if if_TIM:
-            self.attn = SSA_TIM(embed_dim, num_heads=num_heads, step=step, scale=scale)
+            self.attn = SSA_TIM(embed_dim, num_heads=num_heads, step=step, scale=scale,img_h=img_h,patch_size=patch_size)
         else:
             self.attn = SSA(embed_dim, step=step, num_heads=num_heads,attn_drop=attn_drop, scale=scale,node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.norm2 = nn.LayerNorm(embed_dim)
