@@ -1,0 +1,208 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"26203302-e313-4f93-ae3a-3a77e8b6ae47\" name=\"更改\" comment=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/deployment.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/deployment.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/main.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/spiking_transformers.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/spiking_transformers.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/st_utils/layer.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/st_utils/layer.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/st_utils/node.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/st_utils/node.py\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"RESET_MODE\" value=\"MIXED\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;Fancyssc&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,\n    &quot;accountId&quot;: &quot;61729cf9-2d5e-47dc-a079-bc45d518599e&quot;\n  }\n}</component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 2\n}</component>\n  <component name=\"ProjectId\" id=\"2eX1f7dgooZaTx7eipwqu4wcKTk\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"WebServerToolWindowFactoryState\": \"false\",\n    \"WebServerToolWindowPanel.toolwindow.highlight.mappings\": \"true\",\n    \"WebServerToolWindowPanel.toolwindow.highlight.symlinks\": \"true\",\n    \"WebServerToolWindowPanel.toolwindow.show.date\": \"false\",\n    \"WebServerToolWindowPanel.toolwindow.show.permissions\": \"false\",\n    \"WebServerToolWindowPanel.toolwindow.show.size\": \"false\",\n    \"git-widget-placeholder\": \"main\",\n    \"ignore.virus.scanning.warn.message\": \"true\",\n    \"last_opened_file_path\": \"D:/projects/PythonProjects\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19\" />\n        <option value=\"bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\n      <changelist id=\"26203302-e313-4f93-ae3a-3a77e8b6ae47\" name=\"更改\" comment=\"\" />\n      <created>1712036208255</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1712036208255</updated>\n      <workItem from=\"1712036209460\" duration=\"5000\" />\n      <workItem from=\"1727366399374\" duration=\"2573000\" />\n      <workItem from=\"1727396944322\" duration=\"3623000\" />\n      <workItem from=\"1727404497146\" duration=\"174000\" />\n      <workItem from=\"1727404678594\" duration=\"681000\" />\n      <workItem from=\"1727405495294\" duration=\"975000\" />\n      <workItem from=\"1727409012404\" duration=\"107000\" />\n      <workItem from=\"1727409123637\" duration=\"68000\" />\n      <workItem from=\"1727409196801\" duration=\"1505000\" />\n      <workItem from=\"1727414534565\" duration=\"146000\" />\n      <workItem from=\"1727414686359\" duration=\"96000\" />\n      <workItem from=\"1727414786485\" duration=\"388000\" />\n      <workItem from=\"1727415181074\" duration=\"33000\" />\n      <workItem from=\"1727415220625\" duration=\"24000\" />\n      <workItem from=\"1727415249330\" duration=\"200000\" />\n      <workItem from=\"1728451773263\" duration=\"507000\" />\n      <workItem from=\"1728483861774\" duration=\"3387000\" />\n      <workItem from=\"1728919921585\" duration=\"875000\" />\n      <workItem from=\"1728920821252\" duration=\"820000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Code of TIM added, Readme updated.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727367880268</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727367880268</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Code of TIM added, Readme updated.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727367919485</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727367919485</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Code of TIM added, Readme updated.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727368015550</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727368015550</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Code of TIM added, Readme updated.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727396957192</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727396957192</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Model Updated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727408936004</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727408936004</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"Model Updated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727408943447</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727408943447</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Model Updated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727409019277</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727409019277</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Model Updated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727409102221</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727409102221</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Model Updated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727409259305</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727409259305</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727409504409</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727409504409</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727409526668</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727409526668</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727414342892</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727414342892</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727414358227</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727414358227</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727414625017</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727414625017</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727414661124</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727414661124</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727414693828</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727414693828</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727414792761</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727414792761</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727414811126</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727414811126</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727415191113</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727415191113</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727415229965</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727415229965</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727415259196</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727415259196</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727415299557</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727415299557</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727415341527</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727415341527</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1728487182624</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1728487182624</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1728487225465</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1728487225465</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1728487296192</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1728487296192</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"27\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Code of TIM added, Readme updated.\" />\n    <MESSAGE value=\"Model Updated\" />\n    <MESSAGE value=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e6615083eb51336e2cc832a80738ac43ac542f8f)
++++ b/.idea/workspace.xml	(date 1729166882036)
+@@ -4,13 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
++    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Re-config code structure">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/st_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layer.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/st_utils/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/node.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -25,6 +20,7 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="PUSH_AUTO_UPDATE" value="true" />
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+     <option name="RESET_MODE" value="MIXED" />
+   </component>
+@@ -37,7 +33,7 @@
+   <component name="GithubPullRequestsUISettings">{
+   &quot;selectedUrlAndAccountId&quot;: {
+     &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,
+-    &quot;accountId&quot;: &quot;61729cf9-2d5e-47dc-a079-bc45d518599e&quot;
++    &quot;accountId&quot;: &quot;75359dc7-7eb5-4876-9aec-5eac40769cf9&quot;
+   }
+ }</component>
+   <component name="MarkdownSettingsMigration">
+@@ -51,34 +47,64 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+-    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+-    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+-    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+-    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+-    "git-widget-placeholder": "main",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "last_opened_file_path": "D:/projects/PythonProjects",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Python.spikformer_dvs.executor&quot;: &quot;Profiler&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
++    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
++    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/projects/PythonProjects&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
++  <component name="RunManager">
++    <configuration name="spikformer_dvs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="Spiking-Transformers" />
++      <option name="ENV_FILES" value="" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
++      <option name="IS_MODULE_SDK" value="true" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/spikformer_dvs.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Python.spikformer_dvs" />
++      </list>
++    </recent_temporary>
++  </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
+-        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
++        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.22855.92" />
++        <option value="bundled-python-sdk-b068d85d1acf-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.22855.92" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -107,8 +133,11 @@
+       <workItem from="1727415249330" duration="200000" />
+       <workItem from="1728451773263" duration="507000" />
+       <workItem from="1728483861774" duration="3387000" />
+-      <workItem from="1728919921585" duration="875000" />
+-      <workItem from="1728920821252" duration="820000" />
++      <workItem from="1728786987060" duration="6724000" />
++      <workItem from="1728887387343" duration="8022000" />
++      <workItem from="1728906428694" duration="6236000" />
++      <workItem from="1729064344396" duration="2171000" />
++      <workItem from="1729157629374" duration="3211000" />
+     </task>
+     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
+       <option name="closed" value="true" />
+@@ -318,7 +347,47 @@
+       <option name="project" value="LOCAL" />
+       <updated>1728487296192</updated>
+     </task>
+-    <option name="localTasksCounter" value="27" />
++    <task id="LOCAL-00027" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/deployment.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;st_utils/layers/st_embed.py&#10;#&#9;st_utils/node/st_LIFNode.py">
++      <option name="closed" value="true" />
++      <created>1728713756145</created>
++      <option name="number" value="00027" />
++      <option name="presentableId" value="LOCAL-00027" />
++      <option name="project" value="LOCAL" />
++      <updated>1728713756145</updated>
++    </task>
++    <task id="LOCAL-00028" summary="more utils">
++      <option name="closed" value="true" />
++      <created>1728723922017</created>
++      <option name="number" value="00028" />
++      <option name="presentableId" value="LOCAL-00028" />
++      <option name="project" value="LOCAL" />
++      <updated>1728723922017</updated>
++    </task>
++    <task id="LOCAL-00029" summary="re-configure all widgets and code structure for spiking transformers">
++      <option name="closed" value="true" />
++      <created>1728893074045</created>
++      <option name="number" value="00029" />
++      <option name="presentableId" value="LOCAL-00029" />
++      <option name="project" value="LOCAL" />
++      <updated>1728893074045</updated>
++    </task>
++    <task id="LOCAL-00030" summary="Re-config code structure">
++      <option name="closed" value="true" />
++      <created>1728913757990</created>
++      <option name="number" value="00030" />
++      <option name="presentableId" value="LOCAL-00030" />
++      <option name="project" value="LOCAL" />
++      <updated>1728913757990</updated>
++    </task>
++    <task id="LOCAL-00031" summary="Re-config code structure">
++      <option name="closed" value="true" />
++      <created>1728913777137</created>
++      <option name="number" value="00031" />
++      <option name="presentableId" value="LOCAL-00031" />
++      <option name="project" value="LOCAL" />
++      <updated>1728913777137</updated>
++    </task>
++    <option name="localTasksCounter" value="32" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -351,6 +420,11 @@
+     <MESSAGE value="Code of TIM added, Readme updated." />
+     <MESSAGE value="Model Updated" />
+     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
++    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/deployment.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;st_utils/layers/st_embed.py&#10;#&#9;st_utils/node/st_LIFNode.py" />
++    <MESSAGE value="more utils" />
++    <MESSAGE value="re-configure all widgets and code structure for spiking transformers" />
++    <MESSAGE value="Re-config code structure" />
++    <option name="LAST_COMMIT_MESSAGE" value="Re-config code structure" />
++    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+   </component>
+ </project>
+\ No newline at end of file

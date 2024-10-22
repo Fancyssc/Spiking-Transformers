@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="QKFormer added, waiting for adjustment">
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2024_10_16_15_16____.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2024_10_17_20_08____.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_16_15_16_取消提交了更改_[更改]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_17_20_08_取消提交了更改_[更改]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/sftp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_10_14_22_48____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_14_22_48_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/st_utils/layer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,16 +67,21 @@
     &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/projects/PythonProjects&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/shensicheng/python_code/Spiking-Transformers/static_utils&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static_utils" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -113,7 +124,17 @@
       <workItem from="1729440336860" duration="14000" />
       <workItem from="1729482204790" duration="479000" />
       <workItem from="1729482689821" duration="22000" />
-      <workItem from="1729482750357" duration="5574000" />
+      <workItem from="1729482750357" duration="5798000" />
+      <workItem from="1729488876639" duration="1000" />
+      <workItem from="1729489594296" duration="744000" />
+      <workItem from="1729494784311" duration="446000" />
+      <workItem from="1729495277323" duration="638000" />
+      <workItem from="1729505211981" duration="741000" />
+      <workItem from="1729507384154" duration="637000" />
+      <workItem from="1729511729087" duration="310000" />
+      <workItem from="1729576072195" duration="1399000" />
+      <workItem from="1729585114683" duration="6686000" />
+      <workItem from="1729592185393" duration="1378000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -347,7 +368,87 @@
       <option name="project" value="LOCAL" />
       <updated>1729440342648</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="QKFormer added">
+      <option name="closed" value="true" />
+      <created>1729488782946</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1729488782946</updated>
+    </task>
+    <task id="LOCAL-00031" summary="README.md updated">
+      <option name="closed" value="true" />
+      <created>1729494826020</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1729494826020</updated>
+    </task>
+    <task id="LOCAL-00032" summary="README.md updated">
+      <option name="closed" value="true" />
+      <created>1729494939548</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1729494939548</updated>
+    </task>
+    <task id="LOCAL-00033" summary="README.md updated">
+      <option name="closed" value="true" />
+      <created>1729495161292</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1729495161292</updated>
+    </task>
+    <task id="LOCAL-00034" summary="README.md updated">
+      <option name="closed" value="true" />
+      <created>1729495170840</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1729495170840</updated>
+    </task>
+    <task id="LOCAL-00035" summary="README.md updated">
+      <option name="closed" value="true" />
+      <created>1729495288288</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1729495288288</updated>
+    </task>
+    <task id="LOCAL-00036" summary="README.md updated">
+      <option name="closed" value="true" />
+      <created>1729495307383</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1729495307383</updated>
+    </task>
+    <task id="LOCAL-00037" summary="README.md updated">
+      <option name="closed" value="true" />
+      <created>1729507462231</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1729507462231</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Code Refined">
+      <option name="closed" value="true" />
+      <created>1729577139209</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1729577139209</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Spikformer now support CIFAR10">
+      <option name="closed" value="true" />
+      <created>1729593548317</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1729593548317</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,6 +483,10 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
     <MESSAGE value="Spike-Driven Transformer Available Now" />
     <MESSAGE value="QKFormer added, waiting for adjustment" />
-    <option name="LAST_COMMIT_MESSAGE" value="QKFormer added, waiting for adjustment" />
+    <MESSAGE value="QKFormer added" />
+    <MESSAGE value="README.md updated" />
+    <MESSAGE value="Code Refined" />
+    <MESSAGE value="Spikformer now support CIFAR10" />
+    <option name="LAST_COMMIT_MESSAGE" value="Spikformer now support CIFAR10" />
   </component>
 </project>

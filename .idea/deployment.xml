@@ -3,10 +3,10 @@
   <component name="PublishConfigData" autoUpload="Always" serverName="210.75.240.12" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false">
     <option name="confirmBeforeUploading" value="false" />
     <serverData>
-      <paths name="172.16.18.131">
+      <paths name="10.0.6.4(Braincog怀柔2)">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/code" local="$PROJECT_DIR$/../" web="/" />
           </mappings>
         </serverdata>
       </paths>
