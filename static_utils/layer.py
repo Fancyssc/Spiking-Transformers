@@ -2,7 +2,7 @@ from functools import partial
 from braincog.model_zoo.base_module import BaseModule
 from pandas.compat.numpy.function import validate_take_with_convert
 
-from st_utils.node import *
+from static_utils.node import *
 import importlib
 import torch.nn as nn
 
@@ -65,12 +65,12 @@ class SPS(BaseModule):
 
 # Spikformer SPS
 # Default: For dvs data with step equals to 10
-class SPSv1(SPS):
+class SPSv1_s(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
                  embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=step, encode_type=encode_type)
-        self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
-        self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+        # self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+        # self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool2 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool3 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
 
@@ -80,22 +80,20 @@ class SPSv1(SPS):
         assert self.embed_dims % 8 == 0, 'embed_dims must be divisible by 8 in Spikformer'
 
         x = self.ConvBnSn(x,self.proj_conv,self.proj_bn,self.proj_lif)
-        x = self.maxpool(x.flatten(0,1)).reshape(T, B, -1, H // 2, W // 2).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv1,self.proj_bn1,self.proj_lif1)
-        x = self.maxpool1(x.flatten(0,1)).reshape(T, B, -1, H // 4, W // 4).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv2,self.proj_bn2,self.proj_lif2)
-        x = self.maxpool2(x.flatten(0,1)).reshape(T, B, -1, H // 8, W // 8).contiguous()
+        x = self.maxpool2(x.flatten(0,1)).reshape(T, B, -1, H // 2, W // 2).contiguous()
 
         x = self.ConvBnSn(x,self.proj_conv3,self.proj_bn3,self.proj_lif3)
-        x = self.maxpool3(x.flatten(0,1)).reshape(T, B, -1, H // 16, W // 16).contiguous()
+        x = self.maxpool3(x.flatten(0,1)).reshape(T, B, -1, H // 4, W // 4).contiguous()
 
-        x_feat = x.reshape(T, B, -1, H // 16, W // 16).contiguous()
+        x_feat = x.reshape(T, B, -1, H // 4, W // 4).contiguous()
         x = self.ConvBnSn(x,self.rpe_conv,self.rpe_bn,self.rpe_lif)
 
         x = x + x_feat
-        x = x.flatten(-2)  # T,B,C,N
+        x = x.flatten(-2).transpose(-1,-2)  # T B N C
         return x
 
 #Spikformer v2 SPS
@@ -281,45 +279,43 @@ class PEDS_stage(SPS):
 '''
     Spiking Transformer Attentions
 '''
-# Spikformer（ICLR 2023）
-class SSA(BaseModule):
+# done
+class SSA_s(BaseModule):
     #num_heads: 16 for dvsc10, 8 for dvsg
-    def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,scale=0.25,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super(SSA, self).__init__(step=step,encode_type=encode_type)
+    def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,scale=0.125,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
+        super(SSA_s, self).__init__(step=step,encode_type=encode_type)
         self.embed_dim = embed_dim
         self.num_heads = num_heads
         self.scale = scale
         self.attn_drop_rate = attn_drop
 
-        self.q_conv = nn.Conv1d(embed_dim, embed_dim, kernel_size=1, stride=1, bias=False)
+        self.q_linear = nn.Linear(embed_dim, embed_dim)
         self.q_bn = nn.BatchNorm1d(embed_dim)
         self.q_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
-        self.k_conv = nn.Conv1d(embed_dim,embed_dim, kernel_size=1, stride=1, bias=False)
+        self.k_linear = nn.Linear(embed_dim, embed_dim)
         self.k_bn = nn.BatchNorm1d(embed_dim)
         self.k_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
-        self.v_conv = nn.Conv1d(embed_dim, embed_dim, kernel_size=1, stride=1, bias=False)
+        self.v_linear = nn.Linear(embed_dim, embed_dim)
         self.v_bn = nn.BatchNorm1d(embed_dim)
         self.v_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.attn_drop = nn.Dropout(self.attn_drop_rate)
-        self.res_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
         self.attn_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.proj_conv = nn.Conv1d(embed_dim, embed_dim, kernel_size=1, stride=1, bias=False)
         self.proj_bn = nn.BatchNorm1d(embed_dim)
         self.proj_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
-        self.pool = nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1))
-    def qkv(self,x,conv,bn,lif,num_heads=16):
+    def qkv(self,x,linear,bn,lif,num_heads=16):
         if len(x.shape) == 5:
             x = x.flatten(-2,-1)
-        T, B, C, N = x.shape
-        r = conv(x.flatten(0,1))  # TB C N
-        r = bn(r).reshape(T, B, C, N).contiguous()  # T B C N
-        r = lif(r.flatten(0, 1)).reshape(T, B, C, N)  # T B C N
-        return r.transpose(-2,-1).reshape(T, B, N, num_heads, C // num_heads).permute(0, 1, 3, 2, 4).contiguous() #T B H N C/H
+        T, B, N, C = x.shape
+        r = linear(x.flatten(0,1))  # TB N C
+        r = bn(r).reshape(T, B, N, C).contiguous()  # T B N C
+        r = lif(r.flatten(0, 1)).reshape(T, B, N, C)  # T B N C
+        return r.reshape(T, B, N, num_heads, C // num_heads).permute(0, 1, 3, 2, 4).contiguous() #T B H N C/H
 
     def attn_cal(self,q,k,v):
         T, B, H, N, CoH = q.shape  # CoH： C/H
@@ -329,9 +325,9 @@ class SSA(BaseModule):
         r = (attn @ v) * self.scale
         if(self.attn_drop_rate>0):
             r = self.attn_drop(attn)
-        r = r.transpose(3, 4).reshape(T, B, C, N).contiguous()  # T B C N
-        r = self.attn_lif(r.flatten(0, 1))  # TB C N
-        return self.proj_lif(self.proj_bn(self.proj_conv(r))).reshape(T, B, C, N)  # T B C N
+        r = r.transpose(2, 3).reshape(T, B, N, C).contiguous()  # T B N C
+        r = self.attn_lif(r.flatten(0, 1))  # TB N C
+        return self.proj_lif(self.proj_bn(self.proj_conv(r))).reshape(T, B, N, C)  # T B N C
 
 
     def forward(self, x):
@@ -378,7 +374,7 @@ class TIM(BaseModule):
 
         return torch.stack(output)  # T B H, N, C/H
 # TIM (IJCAI 2024)
-class SSA_TIM(SSA):
+class SSA_TIM(SSA_s):
     def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25):
         super(SSA_TIM, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
         self.tim_alpha = TIM_alpha
@@ -399,7 +395,7 @@ class SSA_TIM(SSA):
 
 
 # Spike-driven Transformer (Nips 2024)
-class SDSA(SSA):
+class SDSA(SSA_s):
     def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,scale=0.25,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super(SDSA, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
         self.shortcut_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
@@ -455,7 +451,7 @@ class SDSA(SSA):
 
 
 # QKFormer (Nips 2024)
-class QKTA(SSA):
+class QKTA(SSA_s):
     # No Scale here!
     # num_heads: 8 for dvsc10 in original code
     def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
@@ -491,35 +487,36 @@ class QKTA(SSA):
 '''
     Spiking Transformer MLPs
 '''
+# done
 class MLP(BaseModule):
     def __init__(self, in_features, step=10, encode_type='direct', mlp_ratio = 4.0, out_features=None,mlp_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__(step=step, encode_type=encode_type)
         out_features = out_features or in_features
         hidden_features = int(in_features * mlp_ratio)
         self.mlp_drop = mlp_drop
-        self.fc1_conv = nn.Conv1d(in_features, hidden_features, kernel_size=1, stride=1)
+        self.fc1_linear = nn.Linear(in_features,hidden_features)
         self.fc1_bn = nn.BatchNorm1d(hidden_features)
         self.fc1_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.MLP_drop = nn.Dropout(self.mlp_drop)
 
-        self.fc2_conv = nn.Conv1d(hidden_features, out_features, kernel_size=1, stride=1)
+        self.fc2_linear = nn.Linear(hidden_features,out_features)
         self.fc2_bn = nn.BatchNorm1d(out_features)
         self.fc2_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
     def forward(self, x):
         self.reset()
 
-        T, B, C, N = x.shape
+        T, B, N, C = x.shape
 
-        x = self.fc1_conv(x.flatten(0, 1))
+        x = self.fc1_linear(x.flatten(0,1))
         x = self.fc1_bn(x).reshape(T, B, -1, N).contiguous()  # T B C N
         x = self.fc1_lif(x.flatten(0, 1)).reshape(T, B, -1, N).contiguous()
 
         if self.mlp_drop > 0 :
             x = self.MLP_drop(x)
 
-        x = self.fc2_conv(x.flatten(0, 1))
+        x = self.fc2_linear(x.flatten(0,1))
         x = self.fc2_bn(x).reshape(T, B, C, N).contiguous()
         x = self.fc2_lif(x.flatten(0, 1)).reshape(T, B, C, N).contiguous()
         return x
@@ -579,7 +576,7 @@ class Sdt_MLP(BaseModule):
     Spiking Transformer OTHER Useful Blocks
 '''
 # Spikformer block
-class Spikf_Block(nn.Module):
+class Spikf_Block_s(nn.Module):
     """
     :param: if_TIM: if use Temporal Interaction Module(IJCAI2024)
     """
@@ -589,7 +586,7 @@ class Spikf_Block(nn.Module):
         if if_TIM:
             self.attn = SSA_TIM(embed_dim, num_heads=num_heads, step=step, scale=scale)
         else:
-            self.attn = SSA(embed_dim, step=step, num_heads=num_heads,attn_drop=attn_drop, scale=scale,node=node,tau=tau,act_func=act_func,threshold=threshold)
+            self.attn = SSA_s(embed_dim, step=step, num_heads=num_heads,attn_drop=attn_drop, scale=scale,node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.norm2 = nn.LayerNorm(embed_dim)
         self.mlp = MLP(in_features=embed_dim,mlp_ratio=mlp_ratio,out_features=embed_dim,mlp_drop=mlp_drop,node=node,tau=tau,act_func=act_func,threshold=threshold)
     def forward(self, x):

@@ -2,9 +2,13 @@ from timm.models import register_model
 from timm.models.layers import trunc_normal_
 from timm.models.vision_transformer import _cfg
 from braincog.base.strategy.surrogate import *
-from st_utils.node import *
-from st_utils.layer import *
+from dvs_utils.node import *
+from dvs_utils.layer import *
+from static_utils.layer import *
 
+
+
+# models for dvs datasets
 #original Spikformer(ICLR 2023)
 class Spikformer(nn.Module):
     def __init__(self, step=10,
@@ -24,6 +28,7 @@ class Spikformer(nn.Module):
                           embed_dims=embed_dim,
                           node=node,tau=tau,
                           act_func=act_func,threshold=threshold)
+
 
         block = nn.ModuleList([Spikf_Block(step=step,embed_dim=embed_dim,
                                            num_heads=num_heads, mlp_ratio=mlp_ratio,
@@ -71,7 +76,6 @@ class Spikformer_TIM(nn.Module):
         self.step = step  # time step
         self.num_classes = num_classes
         self.depths = depths
-
         patch_embed = SPSv1(step=step,
                           img_h=img_h,
                           img_w=img_w,
@@ -80,6 +84,8 @@ class Spikformer_TIM(nn.Module):
                           embed_dims=embed_dim,
                           node=node,tau=tau,
                           act_func=act_func,threshold=threshold)
+
+
         #if_TIM = True
         block = nn.ModuleList([Spikf_Block(step=step,embed_dim=embed_dim,
                                            num_heads=num_heads, mlp_ratio=mlp_ratio,
@@ -251,15 +257,79 @@ class QKFormer(nn.Module):
         x = self.head(x.mean(0))
         return x
 
+
+# models for static datasets
+class Spikformer_s(nn.Module):
+    def __init__(self, step=4,
+                 img_h=32, img_w=32, patch_size=4, in_channels=3, num_classes=10,
+                 embed_dim=384, num_heads=12, mlp_ratio=4, scale=0.25, mlp_drop=0.,
+                 attn_drop=0., depths=4, node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5):
+        super().__init__()
+        self.step = step  # time step
+        self.num_classes = num_classes
+        self.depths = depths
+
+        patch_embed = SPSv1_s(step=step,
+                            img_h=img_h,
+                            img_w=img_w,
+                            patch_size=patch_size,
+                            in_channels=in_channels,
+                            embed_dims=embed_dim,
+                            node=node, tau=tau,
+                            act_func=act_func, threshold=threshold)
+
+        block = nn.ModuleList([Spikf_Block_s(step=step, embed_dim=embed_dim,
+                                           num_heads=num_heads, mlp_ratio=mlp_ratio,
+                                           scale=scale, mlp_drop=mlp_drop, attn_drop=attn_drop,
+                                           node=node, tau=2.0, act_func=act_func, threshold=threshold)
+
+                               for j in range(depths)])
+
+        setattr(self, f"patch_embed", patch_embed)
+        setattr(self, f"block", block)
+        # classification head
+        self.head = cls_head(embed_dim, num_classes)
+        self.apply(self._init_weights)
+
+    def _init_weights(self, m):
+        if isinstance(m, nn.Linear):
+            trunc_normal_(m.weight, std=.02)
+            if isinstance(m, nn.Linear) and m.bias is not None:
+                nn.init.constant_(m.bias, 0)
+        elif isinstance(m, nn.LayerNorm):
+            nn.init.constant_(m.bias, 0)
+            nn.init.constant_(m.weight, 1.0)
+
+    def forward_features(self, x):
+        block = getattr(self, f"block")
+        patch_embed = getattr(self, f"patch_embed")
+        x = patch_embed(x)
+        for blk in block:
+            x = blk(x)
+        return x.mean(2)
+
+    def forward(self, x):
+        x = (x.unsqueeze(0)).repeat(self.T, 1, 1, 1, 1)
+        x = self.forward_features(x)
+        x = self.head(x.mean(0))
+        return x
+
 # Registered Models
 @register_model
-def spikformer(pretrained=False,**kwargs):
-    model = Spikformer(step=10,
+def spikformer(pretrained=False,if_dvs=True,**kwargs):
+    if if_dvs:
+        model = Spikformer(step=10,
                  img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
                  embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5
-    )
-    model.default_cfg = _cfg()
+        )
+        model.default_cfg = _cfg()
+    else:
+        model = Spikformer_s(step=4,
+                 img_h=32, img_w=32, patch_size=4, in_channels=3, num_classes=10,
+                 embed_dim=384, num_heads=12, mlp_ratio=4, scale=0.25, mlp_drop=0.,
+                 attn_drop=0., depths=4, node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5)
+        model.default_cfg = _cfg()
     return model
 
 @register_model
@@ -290,3 +360,4 @@ def qkformer(pretrained=False, **kwargs):
     model.default_cfg = _cfg()
     return model
 
+#### models for static datasets
