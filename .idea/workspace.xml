@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="Spikformer now support CIFAR10">
+    <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="bugs fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dvs_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/dvs_utils/layer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/static_utils/layer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +70,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -126,7 +131,11 @@
       <workItem from="1729511729087" duration="310000" />
       <workItem from="1729576072195" duration="1399000" />
       <workItem from="1729585114683" duration="6686000" />
-      <workItem from="1729592185393" duration="3136000" />
+      <workItem from="1729592185393" duration="5855000" />
+      <workItem from="1729603353710" duration="6161000" />
+      <workItem from="1729610290159" duration="1731000" />
+      <workItem from="1729649868014" duration="3661000" />
+      <workItem from="1729654042121" duration="362000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -448,7 +457,39 @@
       <option name="project" value="LOCAL" />
       <updated>1729593576724</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729603266394</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1729603266394</updated>
+    </task>
+    <task id="LOCAL-00042" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729603294413</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1729603294413</updated>
+    </task>
+    <task id="LOCAL-00043" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729603360239</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1729603360239</updated>
+    </task>
+    <task id="LOCAL-00044" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729603412863</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1729603412863</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,6 +528,7 @@
     <MESSAGE value="README.md updated" />
     <MESSAGE value="Code Refined" />
     <MESSAGE value="Spikformer now support CIFAR10" />
-    <option name="LAST_COMMIT_MESSAGE" value="Spikformer now support CIFAR10" />
+    <MESSAGE value="bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugs fixed" />
   </component>
 </project>

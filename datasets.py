@@ -19,11 +19,17 @@ from timm.data import ImageDataset, create_loader, Mixup, FastCollateMixup, AugM
 from timm.data import create_transform, distributed_sampler
 from timm.data.loader import PrefetchLoader
 from tonic import DiskCachedDataset
+
 from torchvision import transforms
+from torchvision import transforms
+from torchvision.transforms.autoaugment import AutoAugment, AutoAugmentPolicy
+
+
 from typing import Any, Dict, Optional, Sequence, Tuple, Union
 from braincog.datasets.NOmniglot.nomniglot_full import NOmniglotfull
 from braincog.datasets.NOmniglot.nomniglot_nw_ks import NOmniglotNWayKShot
 from braincog.datasets.NOmniglot.nomniglot_pair import NOmniglotTrainSet, NOmniglotTestSet
+
 # from braincog.base.conversion.conversion import CIFAR10Policy, Cutout
 # from .cut_mix import CutMix, EventMix, MixUp
 # from .rand_aug import *
@@ -47,6 +53,7 @@ CIFAR10_DEFAULT_MEAN = (0.4914, 0.4822, 0.4465)
 CIFAR10_DEFAULT_STD = (0.2023, 0.1994, 0.2010)
 CIFAR100_DEFAULT_MEAN = (0.5071, 0.4867, 0.4408)
 CIFAR100_DEFAULT_STD = (0.2675, 0.2565, 0.2761)
+
 
 
 def unpack_mix_param(args):
@@ -282,9 +289,9 @@ def get_cifar10_data(batch_size, num_workers=8, same_da=False, **kwargs):
     # )
     normalize = transforms.Normalize(CIFAR10_DEFAULT_MEAN, CIFAR10_DEFAULT_STD)
     transform_train = transforms.Compose([transforms.RandomCrop(32, padding=4), transforms.RandomHorizontalFlip(),
-                                          CIFAR10Policy(),
+                                          AutoAugment(policy=AutoAugmentPolicy.CIFAR10),
                                           transforms.ToTensor(),
-                                          Cutout(n_holes=1, length=16),
+                                          #Cutout(n_holes=1, length=16),
                                           normalize])
     transform_test = transforms.Compose([transforms.ToTensor(), normalize])
     train_dataset = datasets.CIFAR10(root=DATA_DIR, train=True, download=True, transform=transform_train)
@@ -593,7 +600,7 @@ def get_dvsc10_data(batch_size, step, **kwargs):
 
     # if 'temporal_flatten' in kwargs.keys():
     #     if kwargs['temporal_flatten'] is True:
-    #         train_transform.transforms.insert(-1, lambda x: temporal_flatten(x))
+    #         train_transform.transforms.insert(-1, lambda x: tempoƒal_flatten(x))
     #         test_transform.transforms.insert(-1, lambda x: temporal_flatten(x))
 
     train_dataset = DiskCachedDataset(train_dataset,

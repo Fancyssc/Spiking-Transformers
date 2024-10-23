@@ -41,6 +41,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 # load spiking transformer models
 from spiking_transformers import spikformer, spikformer_TIM, sdt, qkformer
+from spiking_transformers import spikformer_s
 
 # choose ur device here
 
@@ -74,6 +75,9 @@ parser.add_argument('--num-classes', type=int, default=10, metavar='N',
                     help='number of label classes (default: 1000)')
 parser.add_argument('--gp', default=None, type=str, metavar='POOL',
                     help='Global pool type, one of (fast, avg, max, avgmax, avgmaxc). Model default if None.')
+parser.add_argument('--dvs', default=True, type=bool,
+                    help='Indicate the model use DVS data or not')
+
 
 # Dataset parameters for static datasets
 parser.add_argument('--img-size', type=int, default=224, metavar='N',
@@ -426,6 +430,7 @@ def main():
 
     model = create_model(
         args.model,
+        # if_dvs = args.dvs
         # num_classes=args.num_classes,
         # dataset=args.dataset,
         # step=args.step,

@@ -10,12 +10,12 @@ from static_utils.layer import *
 
 # models for dvs datasets
 #original Spikformer(ICLR 2023)
-class Spikformer(nn.Module):
+class Spikformer(BaseModule):
     def __init__(self, step=10,
                  img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
                  embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super().__init__()
+        super().__init__(step=step,encode_type='direct_encode')
         self.step = step  # time step
         self.num_classes = num_classes
         self.depths = depths
@@ -69,7 +69,7 @@ class Spikformer(nn.Module):
 # Spikformer with TIM(IJCAI 2024)
 class Spikformer_TIM(nn.Module):
     def __init__(self, step=10,
-                 img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
+                 img_h=64, img_w=64, patch_size=16, in_channels=2, num_classes=10,
                  embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
         super().__init__()
@@ -87,7 +87,7 @@ class Spikformer_TIM(nn.Module):
 
 
         #if_TIM = True
-        block = nn.ModuleList([Spikf_Block(step=step,embed_dim=embed_dim,
+        block = nn.ModuleList([Spikf_Block(step=step,embed_dim=embed_dim,img_h=img_h,
                                            num_heads=num_heads, mlp_ratio=mlp_ratio,
                                            scale=scale, mlp_drop=mlp_drop, attn_drop=attn_drop,
                                            node=node,tau=2.0,act_func=act_func,threshold=threshold,if_TIM=True)
@@ -309,7 +309,7 @@ class Spikformer_s(nn.Module):
         return x.mean(2)
 
     def forward(self, x):
-        x = (x.unsqueeze(0)).repeat(self.T, 1, 1, 1, 1)
+        x = (x.unsqueeze(0)).repeat(self.step, 1, 1, 1, 1)
         x = self.forward_features(x)
         x = self.head(x.mean(0))
         return x
@@ -317,25 +317,29 @@ class Spikformer_s(nn.Module):
 # Registered Models
 @register_model
 def spikformer(pretrained=False,if_dvs=True,**kwargs):
-    if if_dvs:
-        model = Spikformer(step=10,
-                 img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
+    model = Spikformer(step=10,
+                img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
                  embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5
-        )
-        model.default_cfg = _cfg()
-    else:
-        model = Spikformer_s(step=4,
+    )
+    model.default_cfg = _cfg()
+    return model
+
+@register_model
+def spikformer_s(pretrained=False,if_dvs=True,**kwargs):
+    model = Spikformer_s(step=4,
                  img_h=32, img_w=32, patch_size=4, in_channels=3, num_classes=10,
                  embed_dim=384, num_heads=12, mlp_ratio=4, scale=0.25, mlp_drop=0.,
-                 attn_drop=0., depths=4, node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5)
-        model.default_cfg = _cfg()
+                 attn_drop=0., depths=4, node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5
+    )
+    model.default_cfg = _cfg()
     return model
+
 
 @register_model
 def spikformer_TIM(pretrained=False,**kwargs):
     model = Spikformer_TIM(step=10,
-                 img_h=128, img_w=128, patch_size=16, in_channels=2, num_classes=10,
+                 img_h=64, img_w=64, patch_size=16, in_channels=2, num_classes=10,
                  embed_dim=256, num_heads=16, mlp_ratio=4, scale=0.25,mlp_drop=0.,
                  attn_drop=0.,depths=2,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5)
     model.default_cfg = _cfg()

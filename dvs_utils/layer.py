@@ -1,6 +1,7 @@
 from functools import partial
 from braincog.model_zoo.base_module import BaseModule
 from pandas.compat.numpy.function import validate_take_with_convert
+from pygame.transform import threshold
 
 from dvs_utils.node import *
 import importlib
@@ -68,7 +69,8 @@ class SPS(BaseModule):
 class SPSv1(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
                  embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super().__init__(step=step, encode_type=encode_type)
+        super().__init__(step=step, encode_type=encode_type,img_h=img_h, img_w=img_w, patch_size=patch_size, in_channels=in_channels,
+                 embed_dims=embed_dims,node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool2 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
@@ -104,7 +106,8 @@ class SPSv1(SPS):
 class SPSv2(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
                  embed_dims=256,scs_ratio=2.0,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super().__init__(step=step, encode_type=encode_type)
+        super().__init__(step=step, encode_type=encode_type,img_h=img_h, img_w=img_w, patch_size=patch_size, in_channels=in_channels,
+                 embed_dims=embed_dims,node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.proj_conv = nn.Conv2d(in_channels, embed_dims // 8, kernel_size=2, stride=2, bias=False)
         self.proj_conv1 = nn.Conv2d(embed_dims // 8, embed_dims // 4, kernel_size=2, stride=2, bias=False)
         self.proj_conv2 = nn.Conv2d(embed_dims // 4, embed_dims // 2, kernel_size=2, stride=2, bias=False)
@@ -150,7 +153,8 @@ class SPSv2(SPS):
 class SPS_sdt(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
                  embed_dims=256,node=st_LIFNode,tau=2.0, act_func=Sigmoid_Grad,threshold=0.5):
-        super().__init__(step=step, encode_type=encode_type)
+        super().__init__(step=step, encode_type=encode_type,img_h=img_h, img_w=img_w, patch_size=patch_size, in_channels=in_channels,
+                 embed_dims=embed_dims,node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool2 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
@@ -184,7 +188,8 @@ class SPS_sdt(SPS):
 class PEDS_init(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
                  embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super().__init__(step=step, encode_type=encode_type,embed_dims=embed_dims)
+        super().__init__(step=step, encode_type=encode_type,img_h=img_h, img_w=img_w, patch_size=patch_size, in_channels=in_channels,
+                 embed_dims=embed_dims,node=node,tau=tau,act_func=act_func,threshold=threshold)
         del self.rpe_conv, self.rpe_bn, self.rpe_lif # less param
         # self.maxpool = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
         self.maxpool1 = torch.nn.MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
@@ -226,8 +231,9 @@ class PEDS_init(SPS):
 # QKFormer (Nips 2024)
 class PEDS_stage(SPS):
     def __init__(self, step=10, encode_type='direct', img_h=128, img_w=128, patch_size=16, in_channels=2,
-                 embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super().__init__(step=step, encode_type=encode_type)
+                 embed_dims=256,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5,):
+        super().__init__(step=step, encode_type=encode_type,img_h=img_h, img_w=img_w, patch_size=patch_size, in_channels=in_channels,
+                 embed_dims=embed_dims,node=node,tau=tau,act_func=act_func,threshold=threshold)
         del self.rpe_conv, self.rpe_bn, self.rpe_lif # less param
         del self.proj_conv, self.proj_bn, self.proj_lif
         del self.proj_conv1, self.proj_bn1, self.proj_lif1
@@ -380,8 +386,8 @@ class TIM(BaseModule):
         return torch.stack(output)  # T B H, N, C/H
 # TIM (IJCAI 2024)
 class SSA_TIM(SSA):
-    def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25,img_h=128,patch_size=16):
-        super(SSA_TIM, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
+    def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25,img_h=128,node=st_LIFNode,patch_size=16):
+        super(SSA_TIM, self).__init__(embed_dim, step=step, num_heads=num_heads,scale=scale,attn_drop=0.,node=node,tau=2.0,act_func=Sigmoid_Grad,threshold=threshold())
         self.tim_alpha = TIM_alpha
         self.tim = TIM(embed_dim, num_heads, encode_type=encode_type, TIM_alpha=TIM_alpha,img_h=img_h,patch_size=patch_size)
 
@@ -402,7 +408,8 @@ class SSA_TIM(SSA):
 # Spike-driven Transformer (Nips 2024)
 class SDSA(SSA):
     def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,scale=0.25,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super(SDSA, self).__init__(embed_dim, num_heads=num_heads, step=step, encode_type=encode_type, scale=scale)
+        super(SDSA, self).__init__(embed_dim, num_heads=num_heads, step=step, scale=scale ,attn_drop=attn_drop,
+                                            node=node,tau=tau,act_func=act_func,threshold=threshold)
         self.shortcut_lif = node(step=step,tau=tau,act_func=act_func,threshold=threshold)
 
         self.q_conv = nn.Conv2d(embed_dim,embed_dim, kernel_size=1, stride=1, bias=False)
@@ -460,7 +467,8 @@ class QKTA(SSA):
     # No Scale here!
     # num_heads: 8 for dvsc10 in original code
     def __init__(self,embed_dim, step=10,encode_type='direct',num_heads=16,attn_drop=0.,node=st_LIFNode,tau=2.0,act_func=Sigmoid_Grad,threshold=0.5):
-        super(QKTA, self).__init__(embed_dim=embed_dim,step=step,encode_type=encode_type)
+        super(QKTA, self).__init__(embed_dim=embed_dim,step=step,encode_type=encode_type ,attn_drop=attn_drop,
+                                            node=node,tau=tau,act_func=act_func,threshold=threshold)
         del self.v_lif, self.v_conv, self.v_bn,self.res_lif   # less param
         del self.pool
 
