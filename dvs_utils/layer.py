@@ -93,11 +93,11 @@ class SPSv1(SPS):
         x = self.ConvBnSn(x,self.proj_conv3,self.proj_bn3,self.proj_lif3)
         x = self.maxpool3(x.flatten(0,1)).reshape(T, B, -1, H // 16, W // 16).contiguous()
 
-        x_feat = x.reshape(T, B, -1, H // 16, W // 16).contiguous()
-        x = self.ConvBnSn(x,self.rpe_conv,self.rpe_bn,self.rpe_lif)
+        x =  x.reshape(T, B, -1, H // 16, W // 16).contiguous()
+        x_rpe = self.ConvBnSn(x,self.rpe_conv,self.rpe_bn,self.rpe_lif)
 
-        x = x + x_feat
-        x = x.flatten(-2)  # T,B,C,N
+        x = x + x_rpe
+        x = x.reshape(T, B, -1, (H//16)*(W//16)).contiguous()  # T,B,C,N
         return x
 
 #Spikformer v2 SPS
@@ -386,8 +386,8 @@ class TIM(BaseModule):
         return torch.stack(output)  # T B H, N, C/H
 # TIM (IJCAI 2024)
 class SSA_TIM(SSA):
-    def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25,img_h=128,node=st_LIFNode,patch_size=16):
-        super(SSA_TIM, self).__init__(embed_dim, step=step, num_heads=num_heads,scale=scale,attn_drop=0.,node=node,tau=2.0,act_func=Sigmoid_Grad,threshold=threshold())
+    def __init__(self,embed_dim, num_heads, TIM_alpha=0.5, step=10, encode_type='direct', scale=0.25,img_h=128,node=st_LIFNode,patch_size=16,threshold=0.5):
+        super(SSA_TIM, self).__init__(embed_dim, step=step, num_heads=num_heads,scale=scale,attn_drop=0.,node=node,tau=2.0,act_func=Sigmoid_Grad,threshold=threshold)
         self.tim_alpha = TIM_alpha
         self.tim = TIM(embed_dim, num_heads, encode_type=encode_type, TIM_alpha=TIM_alpha,img_h=img_h,patch_size=patch_size)
 
@@ -610,7 +610,7 @@ class Spikf_Block(nn.Module):
 # Spike-driven Transformer block
 class Sdt_Block(nn.Module):
     def __init__(self, embed_dim=256, num_heads=16, step=10, mlp_ratio=4., scale=0., attn_drop=0., mlp_drop=0.,
-                 node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5, if_TIM=False):
+                 node=st_LIFNode, tau=2.0, act_func=Sigmoid_Grad, threshold=0.5,):
         super().__init__()
         self.attn = SDSA(embed_dim, num_heads=num_heads, step=step, scale=scale)
         self.mlp = Sdt_MLP(in_features=embed_dim, mlp_ratio=mlp_ratio, mlp_drop=mlp_drop, node=node, tau=tau,
