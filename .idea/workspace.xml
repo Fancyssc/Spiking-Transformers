@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26203302-e313-4f93-ae3a-3a77e8b6ae47" name="更改" comment="bugs fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_10_12_14_11____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2024_10_12_14_11____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_10_14_22_14____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2024_10_14_22_14____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_10_16_15_16____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_10_17_20_08____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_12_14_11_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_14_22_14_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_16_15_16_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_10_17_20_08_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/sftp.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dvs_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/dvs_utils/layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiking_transformers.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiking_transformers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static_utils/layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/static_utils/layer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +44,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Fancyssc/Spiking-Transformers.git&quot;,
-    &quot;accountId&quot;: &quot;61729cf9-2d5e-47dc-a079-bc45d518599e&quot;
+    &quot;accountId&quot;: &quot;b9c9ca9f-f277-46ad-8747-ecc4ffe46bd1&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -64,7 +71,7 @@
     &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/shensicheng/python_code/Spiking-Transformers/static_utils&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/shensicheng/python_code/Spiking-Transformers&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -135,7 +142,21 @@
       <workItem from="1729603353710" duration="6161000" />
       <workItem from="1729610290159" duration="1731000" />
       <workItem from="1729649868014" duration="3661000" />
-      <workItem from="1729654042121" duration="362000" />
+      <workItem from="1729654042121" duration="624000" />
+      <workItem from="1729654690981" duration="994000" />
+      <workItem from="1729656006117" duration="123000" />
+      <workItem from="1729663480033" duration="1463000" />
+      <workItem from="1729683571548" duration="3016000" />
+      <workItem from="1729751792038" duration="3048000" />
+      <workItem from="1729764111791" duration="8091000" />
+      <workItem from="1729781131573" duration="3498000" />
+      <workItem from="1729785208617" duration="2580000" />
+      <workItem from="1729815825680" duration="248000" />
+      <workItem from="1729838190592" duration="5269000" />
+      <workItem from="1729849337431" duration="1207000" />
+      <workItem from="1729902465334" duration="177000" />
+      <workItem from="1730013248682" duration="621000" />
+      <workItem from="1730355620392" duration="2096000" />
     </task>
     <task id="LOCAL-00001" summary="Code of TIM added, Readme updated.">
       <option name="closed" value="true" />
@@ -489,7 +510,47 @@
       <option name="project" value="LOCAL" />
       <updated>1729603412863</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729654652162</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1729654652162</updated>
+    </task>
+    <task id="LOCAL-00046" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729654696468</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1729654696468</updated>
+    </task>
+    <task id="LOCAL-00047" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729654735583</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1729654735583</updated>
+    </task>
+    <task id="LOCAL-00048" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729654752191</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1729654752191</updated>
+    </task>
+    <task id="LOCAL-00049" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1729753864470</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1729753864470</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -4,6 +4,7 @@ import random
 import torchvision.datasets
 
 import braincog.datasets.ucf101_dvs
+from braincog.datasets.cut_mix import EventMix
 
 try:
     import tonic
