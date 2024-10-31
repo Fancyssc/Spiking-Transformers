@@ -240,9 +240,10 @@ parser.add_argument('-j', '--workers', type=int, default=8, metavar='N',
                     help='how many training processes to use (default: 1)')
 parser.add_argument('--num-gpu', type=int, default=1,
                     help='Number of GPUS to use')
-parser.add_argument('--save-images', action='store_true', default=False,
+parser.add_argument('--save-images', action='store_true', default=True,
                     help='save images of inputs bathes every log interval for debugging')
 parser.add_argument('--amp', action='store_true', default=False,
+                    # bool value need no concret  input
                     help='use NVIDIA Apex AMP or Native AMP for mixed precision training')
 parser.add_argument('--apex-amp', action='store_true', default=False,
                     help='Use NVIDIA Apex AMP mixed precision')
@@ -521,6 +522,7 @@ def main():
             _logger.info('Using NVIDIA APEX AMP. Training in mixed precision.')
     elif use_amp == 'native':
         amp_autocast = torch.cuda.amp.autocast
+        # amp_autocast = torch.amp.autocast('cuda')
         loss_scaler = NativeScaler()
         if args.local_rank == 0:
             _logger.info('Using native Torch AMP. Training in mixed precision.')
