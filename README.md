@@ -1,7 +1,7 @@
 # Spiking Transformers Reproduced With [BrainCog](http://www.brain-cog.network/)
 
-** This repo has beed archived, The new edition has been transfered to [here](https://github.com/Fancyssc/SpikingTransformerBenchmark)**
-** Thanks for supporting us!**
+**This repo has beed archived, The new edition has been transfered to [here](https://github.com/Fancyssc/SpikingTransformerBenchmark)**
+**Thanks for supporting us!**
 
 Spiking Neural Networks (SNNs) are particularly efficient, energy-saving, and biologically interpretable. Models like Spikformer have introduced the attention mechanism from Artificial Neural Networks (ANNs) into SNNs, achieving success across a variety of datasets. The success of **Spiking Transformers** undoubtedly demonstrates the vast potential of SNNs in a wide range of tasks. We provide a customizable solution that allows you to easily [**define your own Spiking Transformer**](#design-your-own-spiking-transformer).
 
